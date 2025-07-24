@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "AUTONOMUS",
+    "slug": "mobilePrestador",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "../assets/images/CharacterLogin.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "scheme": "mobilePrestador",
+    "splash": {
+      "image": "./assets/logoprestador.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/CharacterLogin.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/CharacterLogin.png"
+    },
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
