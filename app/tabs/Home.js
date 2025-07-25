@@ -44,7 +44,7 @@ const HomeScreen = () => {
         <View style={styles.viewcontrolPOSTS}>
           <View style={styles.direita}>
             <Text style={styles.textotop}>Suas avaliações:</Text>
-            <Text contentContainerStyle={{ fontWeight: "bold" }}>3</Text>
+            <Text style={{ fontWeight: "bold" }}>3</Text>
           </View>
           <View style={styles.centro}>
               <Advertisingicon />

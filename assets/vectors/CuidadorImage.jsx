@@ -2,8 +2,8 @@ import * as React from "react";
 import Svg, { Rect, Defs, Pattern, Use, Image } from "react-native-svg";
 const CuidadorImage = (props) => (
   <Svg
-    width={140}
-    height={85}
+    width={200}
+    height={100}
     viewBox="0 0 140 85"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

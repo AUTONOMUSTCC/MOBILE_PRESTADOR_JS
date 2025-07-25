@@ -137,10 +137,9 @@ export default StyleSheet.create({
     height: heightTotal * 0.7,
     borderRadius: 7,
     marginTop: 20,
-    borderColor: "#000",
-    borderWidth: 2,
     alignContent: "flex-start",
     alignItems: "center",
+    boxShadow: "10px 10px 10px 10px  #dadada",
   },
   TituloInfos: {
     width: widthTotal * 0.63,

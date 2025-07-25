@@ -24,7 +24,7 @@ export default StyleSheet.create({
 
   inputPesquisa: {
     flex: 1,
-    height: heightTotal * 0.06,
+    height: heightTotal * 0.045,
     backgroundColor: "#fff",
     borderRadius: 8,
     fontSize: 14,
@@ -35,11 +35,11 @@ export default StyleSheet.create({
     width: widthTotal * 0.8,
     borderWidth: 1,
     textAlign: "left",
-    alignContent: 'center',
+    alignContent: "center",
     alignItems: "center",
     borderColor: "#9e9e9eff",
   },
-entry: {
+  entry: {
     display: "flex",
     width: widthTotal * 0.7,
     height: heightTotal * 0.03,
@@ -58,7 +58,7 @@ entry: {
     width: widthTotal * 0.04,
     height: heightTotal * 0.02,
   },
-  
+
   bellimg: {
     width: 30,
     height: 30,
@@ -66,8 +66,8 @@ entry: {
   },
 
   body: {
-    height: heightTotal,
-    width: widthTotal,
+    height: heightTotal *0.9,
+    width: widthTotal ,
     backgroundColor: "#fff",
     borderTopLeftRadius: 35,
     borderTopRightRadius: 35,
@@ -121,7 +121,6 @@ entry: {
     flex: 1,
     width: width * 0.3,
     height: heightTotal * 0.09,
-
   },
 
   esquerda: {

@@ -11,13 +11,17 @@ import Homeicon from "../../assets/vectors/Homeicon";
 
 export default function TabLayout() {
   return (
-    <Tabs>
+    <Tabs screenOptions={{
+    tabBarActiveTintColor: "#A0CEE1",
+    tabBarInactiveTintColor: "#818898",
+    headerShown: false,
+  }}>
       <Tabs.Screen
         name="Home"
         options={{
           title: "Início",
           tabBarIcon: ({ color, focused }) => (
-            <Homeicon/>
+            <Homeicon color={color} /> 
           ),
         } }
         
@@ -27,7 +31,7 @@ export default function TabLayout() {
         options={{
           title: "chat",
           tabBarIcon: ({ color, focused }) => (
-            <Chaticon/>
+            <Chaticon color={color}/>
           ),
         }}
       />
@@ -36,7 +40,7 @@ export default function TabLayout() {
         options={{
           title: "Salvos",
           tabBarIcon: ({ color, focused }) => (
-            <Adsicon/>
+            <Adsicon color={color}/>
           ),
         }}
       />
@@ -45,7 +49,7 @@ export default function TabLayout() {
         options={{
           title: "agenda",
           tabBarIcon: ({ color, focused }) => (
-            <Calendaricon/>
+            <Calendaricon color={color}/>
           ),
         }}
       />
@@ -54,7 +58,7 @@ export default function TabLayout() {
         options={{
           title: "Perfil",
           tabBarIcon: ({ color, focused }) => (
-            <Profileicon/>
+            <Profileicon color={color}/>
           )
         }}
       />

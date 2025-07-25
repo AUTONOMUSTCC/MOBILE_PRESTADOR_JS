@@ -93,7 +93,7 @@ export default StyleSheet.create({
 
   forgotContainer: {
     width: widthTotal * 0.8,
-    alignItems: "left",
+    alignItems: "flex-end",
   },
 
   forgotBTN: {

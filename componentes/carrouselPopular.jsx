@@ -2,18 +2,19 @@ import { useRef, useState } from "react";
 import {
   Dimensions,
   FlatList,
-  Image,
   StyleSheet,
   Text,
-  View,
+  View
 } from "react-native";
+import * as Progress from 'react-native-progress';
 //SVG'S
-import ReformasImage from "../assets/vectors/ReformasImage";
 import CuidadorImage from "../assets/vectors/CuidadorImage";
 import LimpezaImage from "../assets/vectors/LimpezaImage";
+import ReformasImage from "../assets/vectors/ReformasImage";
 // CONSTANTES
 const { width } = Dimensions.get("screen");
 const heightTotal = Dimensions.get("screen").height;
+
 
 const data = [
   {
@@ -21,18 +22,21 @@ const data = [
     id: "1",
     title: "Construção e Reformas",
     description: "Reformas residenciais",
+    progress: 0.5,
   },
   {
     image: <CuidadorImage/>,
     id: "2",
     title: "Saúde e Bem-Estar",
     description: "Cuidador",
+    progress: 0.31,
   },
   {
     image: <LimpezaImage/>,
     id: "3",
     title: "Serviços domésticos e Limpeza",
     description: "Faxina",
+    progress: 0.6,
   },
  /* {
     image: require("../assets/images/EquipeIntro.png"),
@@ -48,6 +52,7 @@ const data = [
   },*/
 ];
 
+
 const CarrouselPop = () => {
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -58,7 +63,7 @@ const CarrouselPop = () => {
     setCurrentIndex(index);
   };
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item }) => (    
     <View style={styles.card}>
       {item.image} 
       <View style={styles.textContainer}>
@@ -66,9 +71,13 @@ const CarrouselPop = () => {
         {item.description && (
           <Text style={styles.description}>{item.description}</Text>
         )}
+        <Progress.Bar progress={item.progress} width={140} color="#264653"  unfilledColor="#C4E4F2" borderWidth={0} />
+        <Text style={styles.qtdWorkers}> <Text style={styles.number}>{ 1000*(item.progress) }</Text>  Profissionais  </Text>
       </View>
     </View>
   );
+
+
 
   return (
     <View style={styles.container}>
@@ -100,20 +109,22 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    height: heightTotal * 0.3,
+    height: heightTotal * 0.2,
     width: width,
     display: "flex",
     paddingTop: 0,
   },
   card: {
     flexDirection: "column",
-    height: heightTotal * 0.3,
-    width: width * 0.5,
+    height: heightTotal * 0.2,
+    width: width * 0.4,
     borderRadius: 16,
     borderColor: "#ECEFF3",
     borderWidth: 1,
     backgroundColor: "#fff",
     overflow: "hidden", // garante que nada ultrapasse os limites do card
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
   image: {
     flex: 2, // imagem ocupa 2/3 do card
@@ -122,20 +133,24 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1, // 1/3 do card
-    justifyContent: "center",
+    width: width * 0.4, 
+    justifyContent: "flex-start",
     alignItems: "flex-start",
     paddingHorizontal: 10,
-    backgroundColor: "#fff",
+    paddingVertical: 10,
   },
   title: {
-    fontSize: 10,
-    textAlign: "center",
+    fontSize: 8,
+    textAlign: "flex-start",
+    color:'#666D80',
   },
   description: {
-    fontSize: 8,
-    color: "#555",
+    fontSize: 12,
+    color: "#1A1B25",
     textAlign: "center",
     marginTop: 0,
+    fontFamily: 'Poppins',
+    fontWeight: 'medium',
   },
   pagination: {
     flexDirection: "row",
@@ -148,6 +163,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#333",
     borderRadius: 3,
     marginHorizontal: 4,
+  },
+  qtdWorkers:{
+    fontFamily: 'Inter',
+    fontSize: 10,
+    color:'#82A2AF',
+  },
+  number:{
+    fontFamily: 'Inter',
+    fontSize: 10,
+    color:'#82A2AF',
+    fontWeight:'bold',
   },
 });
 
