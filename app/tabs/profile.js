@@ -41,11 +41,14 @@ export default function Profile() {
       <ScrollView style={styles.ScrollView}>
         <View style={styles.main}>
           <View style={styles.maininfos}>
-            <ImageBackground source={profilePic} style={styles.profilePicture}>
+            <View style={styles.background}>
+              <ImageBackground source={profilePic} style={styles.profilePicture}>
+            
               <View style={styles.circle}>
                 <ChangeImage />
               </View>
             </ImageBackground>
+            </View>
             <View style={styles.informations}>
               <View style={styles.Identification}>
                 <Text style={styles.Name}> LETÍCIA SOARES </Text>

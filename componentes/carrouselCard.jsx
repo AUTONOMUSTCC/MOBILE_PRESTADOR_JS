@@ -1,12 +1,14 @@
+import { useNavigation } from "@react-navigation/native";
 import { useRef, useState } from "react";
 import {
   Dimensions,
   FlatList,
-  Image,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
+
 import Agendaicon from "../assets/vectors/Agendaicon";
 import Searchicon2 from "../assets/vectors/Searchicon2";
 // CONSTANTES
@@ -14,28 +16,33 @@ const { width } = Dimensions.get("screen");
 const heightTotal = Dimensions.get("screen").height;
 const data = [
   {
-    image: <Agendaicon/>,
+    image: <Agendaicon />,
     id: "1",
     title: "Agenda inteligente",
-    description: "Preencha sua agenda com seus horários disponíveis e combine horários com os profissionais",
+    description:
+      "Preencha sua agenda com seus horários disponíveis e combine horários com os profissionais",
+    screen: "agenda",
   },
- {
-    image: <Searchicon2/>,
+  {
+    image: <Searchicon2 />,
     id: "2",
     title: "Slide 2",
     description: "Descrição do slide 2",
-  },/* 
+    screen: "chat",
+  },
   {
-    image: require("../assets/images/logoprestador.png"),
+    image: <Searchicon2 />,
     id: "3",
     title: "Slide 3",
     description: "Descrição do slide 3",
-  },*/
+    screen: "salvos",
+  },
 ];
 
 const Carrousel = () => {
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigation = useNavigation();
 
   const handleScroll = (event) => {
     const index = Math.round(event.nativeEvent.contentOffset.x / width);
@@ -44,18 +51,22 @@ const Carrousel = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.slide}>
-      <View style={styles.card}>
-        <View style={styles.imageContainer}>
-          {item.image}
-        </View>
+      <TouchableOpacity
+        style={styles.card}
+        activeOpacity={0.8}
+        onPress={() => navigation.navigate(item.screen)}
+      >
+        <View style={styles.card}>
+          <View style={styles.imageContainer}>{item.image}</View>
 
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>{item.title}</Text>
-          {item.description && (
-            <Text style={styles.description}>{item.description}</Text>
-          )}
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{item.title}</Text>
+            {item.description && (
+              <Text style={styles.description}>{item.description}</Text>
+            )}
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
   return (

@@ -11,7 +11,7 @@ export default StyleSheet.create({
     height: heightTotal * 0.6,
     width: widthTotal,
   },
-
+  /*PESQUISA */
   pesquisaContainer: {
     width: widthTotal,
     paddingHorizontal: 16,
@@ -64,10 +64,10 @@ export default StyleSheet.create({
     height: 30,
     resizeMode: "contain",
   },
-
+  /* Corpo da tela */
   body: {
-    height: heightTotal *0.9,
-    width: widthTotal ,
+    height: heightTotal * 0.9,
+    width: widthTotal,
     backgroundColor: "#fff",
     borderTopLeftRadius: 35,
     borderTopRightRadius: 35,
@@ -75,7 +75,7 @@ export default StyleSheet.create({
     paddingTop: 20,
     alignItems: "center",
   },
-
+  /*PRIMEIRO CARROUSEL  */
   view1: {
     width: width,
     backgroundColor: "#fff",
@@ -85,19 +85,19 @@ export default StyleSheet.create({
 
   text: {
     fontFamily: "Inter",
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: "bold",
     color: "#36394A",
     marginBottom: 10,
     alignSelf: "flex-start",
     left: 20,
   },
-
+  /*Informações passoais  */
   viewcontrolPOSTS: {
     width: widthTotal * 0.8,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     height: heightTotal * 0.1,
     borderStyle: "solid",
     borderColor: "#BFBFBF",
@@ -107,7 +107,7 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
 
-  direita: {
+  esquerda: {
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
@@ -118,12 +118,12 @@ export default StyleSheet.create({
   centro: {
     alignItems: "center",
     justifyContent: "center",
+    width: width * 0.25,
+    height: heightTotal * 0.085,
     flex: 1,
-    width: width * 0.3,
-    height: heightTotal * 0.09,
   },
 
-  esquerda: {
+  direita: {
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
@@ -142,7 +142,7 @@ export default StyleSheet.create({
   texto: {
     textAlign: "center",
     color: "#666D80",
-    fontSize: 12,
+    fontSize: 11,
     marginTop: 5,
   },
 
@@ -152,13 +152,13 @@ export default StyleSheet.create({
     height: 22,
     resizeMode: "contain",
   },
-
+  /*SEGUNDO CARROUSEL  */
   CarouselServicos: {
     width: width,
     marginTop: 20,
     marginBottom: 0,
   },
-
+  /*TERCEIRO CARROUSEL  */
   CarouselCategorias: {
     width: width,
     marginTop: 20,

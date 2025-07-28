@@ -50,7 +50,7 @@ export default StyleSheet.create({
   //VIEW PRINCIPAL DA TELA
   main: {
     display: "flex",
-    height: heightTotal ,
+    height: heightTotal,
     width: widthTotal,
     alignItems: "center",
   },
@@ -63,6 +63,14 @@ export default StyleSheet.create({
     alignItems: "flex-start",
     flexDirection: "row",
     marginTop: 40,
+  },
+  background: {
+    width: widthTotal * 0.26,
+    height: heightTotal * 0.125,
+    backgroundColor: "#A0CEE1",
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
   },
   profilePicture: {
     width: widthTotal * 0.25,
@@ -77,7 +85,7 @@ export default StyleSheet.create({
     contentFit: "contain",
   },
   circle: {
-    backgroundColor: "#FFC300",
+    backgroundColor: "#A0CEE1",
     width: 25,
     height: 25,
     justifyContent: "center",
@@ -146,7 +154,7 @@ export default StyleSheet.create({
     height: heightTotal * 0.05,
     alignItems: "flex-start",
     justifyContent: "center",
-    borderBottomColor: "#FFC100",
+    borderBottomColor: "#A0CEE1",
     borderWidth: 3,
     borderTopWidth: 0,
     borderLeftWidth: 0,
