@@ -6,26 +6,32 @@ import {
   ScrollView,
   Image,
   Dimensions,
+  Pressable,
 } from "react-native";
 import styles from "../../styles/HomeStyle";
 import Carrousel from "../../componentes/carrouselCard";
 import CarrouselPop from "../../componentes/carrouselPopular";
 import CarrouselCategorias from "../../componentes/carrouselCategorias";
-import { Link } from "expo-router";
+import { Link,useRouter } from "expo-router";
 
 export const { width } = Dimensions.get("window");
-const widthTotal = Dimensions.get("screen").width;
-const heightTotal = Dimensions.get("screen").height;
 
 // ICONES
 import Bellicon from "../../assets/vectors/Bellicon";
 import Searchicon from "../../assets/vectors/Searchicon";
 import Advertisingicon from "../../assets/vectors/Advertisingicon";
 import CreateAdicon from "../../assets/vectors/CreateAdicon";
-// Imagens
+
+// CONSTS
 
 const HomeScreen = () => {
   const [pesquisa, setPesquisa] = useState("");
+  const router = useRouter();
+  
+  const onPress = () => {
+    router.push("/buttonTabs/");
+  };
+
 
   return (
     <ScrollView
@@ -43,7 +49,10 @@ const HomeScreen = () => {
             value={pesquisa}
           />
         </View>
-        <Bellicon />
+        <View style={styles.notification}>
+          <Pressable onPress={onPress}>
+          <Bellicon /></Pressable>
+        </View>
       </View>
 
       {/* Corpo da tela */}
@@ -67,11 +76,11 @@ const HomeScreen = () => {
             </View>
           </Link>
 
-          <Link href="/tabs/salvos" >
-          <View style={styles.direita}>
-            <CreateAdicon />
-            <Text style={styles.texto}>Editar anúncio</Text>
-          </View>
+          <Link href="/tabs/salvos">
+            <View style={styles.direita}>
+              <CreateAdicon />
+              <Text style={styles.texto}>Editar anúncio</Text>
+            </View>
           </Link>
         </View>
 

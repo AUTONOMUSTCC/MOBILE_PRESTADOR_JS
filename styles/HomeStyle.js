@@ -59,10 +59,9 @@ export default StyleSheet.create({
     height: heightTotal * 0.02,
   },
 
-  bellimg: {
-    width: 30,
-    height: 30,
-    resizeMode: "contain",
+  notification:{
+    backgroundColor: "#005500",
+    
   },
   /* Corpo da tela */
   body: {

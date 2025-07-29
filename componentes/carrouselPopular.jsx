@@ -4,7 +4,8 @@ import {
   FlatList,
   StyleSheet,
   Text,
-  View
+  View,
+
 } from "react-native";
 import * as Progress from 'react-native-progress';
 //SVG'S
