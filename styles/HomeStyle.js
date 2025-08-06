@@ -60,8 +60,8 @@ export default StyleSheet.create({
   },
 
   notification:{
-    backgroundColor: "#005500",
-    
+    width: widthTotal * 0.1,
+    height: heightTotal * 0.04,
   },
   /* Corpo da tela */
   body: {

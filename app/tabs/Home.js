@@ -1,26 +1,25 @@
-import React, { useState } from "react";
+import { Link, useRouter } from "expo-router";
+import { useState } from "react";
 import {
-  View,
-  Text,
-  TextInput,
-  ScrollView,
-  Image,
   Dimensions,
   Pressable,
+  ScrollView,
+  Text,
+  TextInput,
+  View
 } from "react-native";
-import styles from "../../styles/HomeStyle";
 import Carrousel from "../../componentes/carrouselCard";
-import CarrouselPop from "../../componentes/carrouselPopular";
 import CarrouselCategorias from "../../componentes/carrouselCategorias";
-import { Link,useRouter } from "expo-router";
+import CarrouselPop from "../../componentes/carrouselPopular";
+import styles from "../../styles/HomeStyle";
 
 export const { width } = Dimensions.get("window");
 
 // ICONES
-import Bellicon from "../../assets/vectors/Bellicon";
-import Searchicon from "../../assets/vectors/Searchicon";
 import Advertisingicon from "../../assets/vectors/Advertisingicon";
+import Bellicon from "../../assets/vectors/Bellicon";
 import CreateAdicon from "../../assets/vectors/CreateAdicon";
+import Searchicon from "../../assets/vectors/Searchicon";
 
 // CONSTS
 
@@ -29,7 +28,7 @@ const HomeScreen = () => {
   const router = useRouter();
   
   const onPress = () => {
-    router.push("/buttonTabs/");
+   router.push('/notifications');
   };
 
 
@@ -51,7 +50,8 @@ const HomeScreen = () => {
         </View>
         <View style={styles.notification}>
           <Pressable onPress={onPress}>
-          <Bellicon /></Pressable>
+          <Bellicon />
+          </Pressable>
         </View>
       </View>
 
