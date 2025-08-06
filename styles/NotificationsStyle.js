@@ -1,26 +1,28 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 const { height } = Dimensions.get("screen").height;
-const {width} = Dimensions.get("screen").width;
+const { width } = Dimensions.get("screen").width;
 export default StyleSheet.create({
   //GERAL
-container: {
+  container: {
+    display: 'flex',
     flex: 1,
-    backgroundColor: "#ff000f",
-    alignItems: 'center',
-    alignContent: 'center',
-    justifyContent: 'center',
   },
+  
   scroll: {
-    paddingBottom: 30,
+    display: 'content',
+    paddingBottom: 0,
+    paddingLeft: 20,
+    backgroundColor: '#fff',
   },
   header: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 16,
-    width: width ,
-    height: height * 0.05,
+    justifyContent: "center",
+    width: width,
+    height: height * 0.4,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    
   },
   headerTitle: {
     fontSize: 16,
@@ -38,6 +40,8 @@ container: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 14,
+    width: width *0.8,
+    height: height *0.05,
   },
   avatar: {
     width: 44,

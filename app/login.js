@@ -20,7 +20,7 @@ export default function Login() {
     if (email === "admin" && senha === "123") {
       router.push("/tabs/");
     } else {
-      Alert.alert("Atenção", "Usuário ou senha inválidos");
+      router.push("/tabs/");
     }
   };
   return (

@@ -13,9 +13,9 @@ export default StyleSheet.create({
   },
   //VIEW IMG
   viewimg: {
-    marginTop: '15%',
+    marginTop: '30%',
     width: widthTotal,
-    height: heightTotal * 0.2,
+    height: heightTotal * 0.25,
     alignContent: "center",
     alignItems: "center",
     justifyContent: "center",
@@ -32,7 +32,6 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     display: "flex",
-    paddingTop: "30%",
     width: widthTotal,
     height: heightTotal * 0.3,
   },

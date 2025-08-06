@@ -17,7 +17,7 @@ export default function RootLayout() {
         name="notifications"
         options={{
           headerShown: false,
-          presentation: "transparentModal", // ou "transparentModal"
+          presentation: "transparentModal", 
           animation: "slide_from_bottom",
         }}
       />
