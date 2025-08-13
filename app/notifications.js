@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  StatusBar,
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import styles from "../styles/NotificationsStyle";
@@ -31,7 +32,7 @@ const notifications = () => {
         foto: "https://randomuser.me/api/portraits/men/11.jpg",
       },
     ],
-    ultimos7dias: Array.from({ length: 8 }).map((_, i) => ({
+    ultimos7dias: Array.from({ length: 20 }).map((_, i) => ({
       id: 100 + i,
       nome: "ROBERTO DE SOUZA",
       mensagem: "visitou seu perfil",
@@ -42,6 +43,7 @@ const notifications = () => {
   return (
     <SafeAreaProvider >
       <SafeAreaView style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
+          <StatusBar barStyle="dark-content" backgroundColor="#fff" />
           <View style={styles.header}>
             <TouchableOpacity onPress={() => router.back()}>
               <Ionicons name="chevron-back" size={24} color="#000" />

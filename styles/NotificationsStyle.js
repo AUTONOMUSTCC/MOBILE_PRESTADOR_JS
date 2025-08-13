@@ -8,21 +8,23 @@ export default StyleSheet.create({
     display: 'flex',
     flex: 1,
   },
-  
+
   scroll: {
     display: 'content',
-    paddingBottom: 0,
+    paddingBottom: 2,
     paddingLeft: 20,
     backgroundColor: '#fff',
+    marginBottom: "10%",
   },
   header: {
     flexDirection: "row",
     justifyContent: "center",
     width: width,
-    height: height * 0.4,
+    height: '5%',
     alignItems: 'center',
     backgroundColor: '#fff',
-    
+    display: 'flex',
+    alignContent: 'center',
   },
   headerTitle: {
     fontSize: 16,
@@ -40,8 +42,8 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 14,
-    width: width *0.8,
-    height: height *0.05,
+    width: width * 0.8,
+    height: height * 0.05,
   },
   avatar: {
     width: 44,
