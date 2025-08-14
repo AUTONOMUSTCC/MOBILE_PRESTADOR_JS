@@ -1,3 +1,4 @@
+import react from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 
 const width = Dimensions.get("screen").width;
@@ -6,13 +7,14 @@ const heigth = Dimensions.get("screen").height;
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#550022',
+        backgroundColor: '#fff',
         alignItems: 'center',
+        alignContent: 'center',
         justifyContent: 'center',
     },
 
     containerTitle:{
-        width: width * 0.8,
+        width: width *0.9 ,
         height: heigth * 0.1,
         alignContent: 'center',
         justifyContent: 'center',
@@ -42,24 +44,30 @@ export default StyleSheet.create({
    
     containerWeek:{
         width: width,
-        height: heigth * 0.15,
+        height: heigth * 0.1,
         alignContent: 'center',
         justifyContent: 'center', 
+        alignItems: 'center',
         flexDirection: 'row',
+        display: 'flex',
+        backgroundColor:'#fff',
     },
     weekbuttonscontainer:{
-        width: width * 0.7,
-        height: heigth * 0.2,
+        width: width * 0.8,
+        height: heigth * 0.07,
         borderRadius: 12,
         borderColor: "#E9E9E9",
         borderWidth: 2,
         flexDirection: 'row',
+        alignContent: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    botao:{
+    day:{
+        backgroundColor: "#aa3344",
         width: width * 0.1,
-        height: heigth * 0.05,
-        backgroundColor: "#FFEEB8",
+        margin: 1,
         borderRadius: 5,
     },
-
+ 
 });

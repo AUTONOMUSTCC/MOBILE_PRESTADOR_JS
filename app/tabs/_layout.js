@@ -2,11 +2,11 @@ import { Tabs } from "expo-router";
 
 
 //SVG'S
-import Profileicon from "../../assets/vectors/Profileicon";
-import Chaticon from "../../assets/vectors/Chaticon";
 import Adsicon from "../../assets/vectors/Adsicon";
 import Calendaricon from "../../assets/vectors/Calendaricon";
+import Chaticon from "../../assets/vectors/Chaticon";
 import Homeicon from "../../assets/vectors/Homeicon";
+import Profileicon from "../../assets/vectors/Profileicon";
 
 
 export default function TabLayout() {
