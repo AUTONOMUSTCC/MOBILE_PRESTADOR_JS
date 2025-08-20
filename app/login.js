@@ -1,12 +1,13 @@
-import Header from "../componentes/Head";
-import styles from "../styles/LoginStyles";
-import { useRouter, Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import React from "react";
-import { Alert, Pressable, Text, TextInput, View, Image } from "react-native";
+import { Image, Pressable, Text, TextInput, View } from "react-native";
+import Header from "../componentes/Head";
+import { LoginUsers } from "../services/LoginUsers";
+import styles from "../styles/LoginStyles";
 
 //SVG'S
-import Usericon from "../assets/vectors/Usericon";
 import Lockicon from "../assets/vectors/Lockicon";
+import Usericon from "../assets/vectors/Usericon";
 
 //IMAGENS
 const personagem = require("../assets/images/CharacterLogin.png");
@@ -16,13 +17,20 @@ export default function Login() {
   const [senha, setSenha] = React.useState("");
   const router = useRouter();
 
-  const TESTE = () => {
-    if (email === "admin" && senha === "123") {
-      router.push("/tabs/");
+  const LoginPrestador = async () => {
+    const prestador = await LoginUsers({email}, {senha});
+    if (prestador) {
+      // Armazenar o prestador no localStorage (ou AsyncStorage no React Native)
+      // Aqui usamos o AsyncStorage para persistir os dados entre as telas
+      await AsyncStorage.setItem('prestador', JSON.stringify(prestador));
+     // navigation.navigate('/tabs/'); // Navegar para a tela de Dashboard
+     Alert.alert("E-mail e/ou senha inválidos.");
+
     } else {
-      router.push("/tabs/");
+      Alert.alert("E-mail e/ou senha inválidos.");
     }
   };
+
   return (
     <View style={styles.container}>
       <Header />
@@ -61,7 +69,7 @@ export default function Login() {
         </Link>
       </View>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button} onPress={TESTE}>
+        <Pressable style={styles.button} onPress={LoginPrestador}>
           <Text style={styles.text}>ENTRAR</Text>
         </Pressable>
       </View>
