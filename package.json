@@ -20,6 +20,7 @@
     "expo-status-bar": "~2.2.3",
     "react": "19.0.0",
     "react-native": "0.79.4",
+    "react-native-paper": "^5.14.5",
     "react-native-progress": "^5.0.1",
     "react-native-ratings": "^8.1.0",
     "react-native-safe-area-context": "^5.5.2",

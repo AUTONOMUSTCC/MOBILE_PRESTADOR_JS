@@ -10,50 +10,54 @@ export default StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         alignContent: 'center',
-        justifyContent: 'center',
+        width: width,
+        height: heigth,
     },
 
-    containerTitle:{
-        width: width *0.9 ,
+    containerTitle: {
+        paddingTop: 10,
+        width: width * 0.9,
         height: heigth * 0.1,
         alignContent: 'center',
         justifyContent: 'center',
-        backgroundColor: '#ff552f',
     },
-    Title:{
+    Title: {
         fontFamily: 'Inter',
-        fontSize: 20,
-        fontWeight: 'semibold',
+        fontSize: 25,
+        fontWeight: '700',
         color: '#000',
         textAlign: 'center'
     },
-
-    containersubTitle:{
-        width: width,
-        height: heigth * 0.15,
-        alignContent: 'center',
-        justifyContent: 'center', 
-    },
-    Subtitle:{
-        fontFamily: 'Inter',
-        fontSize: 13,
-        fontWeight: 'light',
-        color: '#000',
-        textAlign: 'justify'
-    },
-   
-    containerWeek:{
-        width: width,
+    //Subtitulo
+    containersubTitle: {
+        width: width * 0.9,
         height: heigth * 0.1,
         alignContent: 'center',
-        justifyContent: 'center', 
+        justifyContent: 'center',
+    },
+
+    Subtitle: {
+        fontFamily: 'Inter',
+        fontSize: 15,
+        fontWeight: 'light',
+        color: '#000',
+        textAlign: 'center',
+        padding: 5,
+
+    },
+
+    containerWeek: {
+        width: width,
+        height: heigth * 0.08,
+        alignContent: 'center',
+        justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
         display: 'flex',
-        backgroundColor:'#fff',
+        backgroundColor: '#fff',
     },
-    weekbuttonscontainer:{
-        width: width * 0.8,
+    weekbuttonscontainer: {
+        width: width * 0.85,
         height: heigth * 0.07,
         borderRadius: 12,
         borderColor: "#E9E9E9",
@@ -63,11 +67,18 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    day:{
-        backgroundColor: "#aa3344",
+    day: {
         width: width * 0.1,
         margin: 1,
         borderRadius: 5,
+
     },
- 
+    containerTime: {
+        marginTop: 20,
+        width: width * 0.85,
+        height: heigth * 0.1,
+        borderRadius: 12,
+        borderColor: "#E9E9E9",
+        borderWidth: 2,
+    },
 });

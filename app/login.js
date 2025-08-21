@@ -1,8 +1,9 @@
+
+
 import { Link, useRouter } from "expo-router";
 import React from "react";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 import Header from "../componentes/Head";
-import { LoginUsers } from "../services/LoginUsers";
 import styles from "../styles/LoginStyles";
 
 //SVG'S
@@ -18,7 +19,7 @@ export default function Login() {
   const router = useRouter();
 
   const LoginPrestador = async () => {
-    const prestador = await LoginUsers({email}, {senha});
+   /* const prestador = await LoginUsers({email}, {senha});
     if (prestador) {
       // Armazenar o prestador no localStorage (ou AsyncStorage no React Native)
       // Aqui usamos o AsyncStorage para persistir os dados entre as telas
@@ -28,7 +29,8 @@ export default function Login() {
 
     } else {
       Alert.alert("E-mail e/ou senha inválidos.");
-    }
+    }*/
+    router.push('/tabs/');
   };
 
   return (

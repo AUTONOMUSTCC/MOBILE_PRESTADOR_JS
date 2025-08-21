@@ -52,6 +52,7 @@ export default function TabLayout() {
             <Calendaricon color={color}/>
           ),
         }}
+        headerShown="false"
       />
       <Tabs.Screen
         name="profile"
