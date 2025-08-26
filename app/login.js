@@ -1,16 +1,16 @@
-
-
 import { Link, useRouter } from "expo-router";
 import React from "react";
-import { Image, Pressable, Text, TextInput, View } from "react-native";
+import { Image, Pressable, Text, TextInput, View, Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage"; 
 import Header from "../componentes/Head";
 import styles from "../styles/LoginStyles";
+import { LoginUsers } from "../services/LoginUsers";
 
-//SVG'S
+// SVG's
 import Lockicon from "../assets/vectors/Lockicon";
 import Usericon from "../assets/vectors/Usericon";
 
-//IMAGENS
+// Imagem
 const personagem = require("../assets/images/CharacterLogin.png");
 
 export default function Login() {
@@ -19,18 +19,22 @@ export default function Login() {
   const router = useRouter();
 
   const LoginPrestador = async () => {
-   /* const prestador = await LoginUsers({email}, {senha});
-    if (prestador) {
-      // Armazenar o prestador no localStorage (ou AsyncStorage no React Native)
-      // Aqui usamos o AsyncStorage para persistir os dados entre as telas
-      await AsyncStorage.setItem('prestador', JSON.stringify(prestador));
-     // navigation.navigate('/tabs/'); // Navegar para a tela de Dashboard
-     Alert.alert("E-mail e/ou senha inválidos.");
+    try {
+      const prestador = await LoginUsers(email, senha);
 
-    } else {
-      Alert.alert("E-mail e/ou senha inválidos.");
-    }*/
-    router.push('/tabs/');
+      if (prestador) {
+        // Salva no AsyncStorage
+        await AsyncStorage.setItem("prestador", JSON.stringify(prestador));
+
+        // Navega para a tela principal
+        router.push("/tabs/");
+      } else {
+        Alert.alert("Erro", "E-mail e/ou senha inválidos.");
+      }
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Erro", "Não foi possível fazer login. Tente novamente.");
+    }
   };
 
   return (
@@ -48,6 +52,8 @@ export default function Login() {
             onChangeText={setEmail}
             value={email}
             placeholder="Email"
+            autoCapitalize="none"
+            keyboardType="email-address"
           />
         </View>
         <View style={styles.input}>
@@ -57,6 +63,7 @@ export default function Login() {
             onChangeText={setSenha}
             value={senha}
             placeholder="Senha"
+            secureTextEntry
           />
         </View>
 
@@ -64,12 +71,13 @@ export default function Login() {
           <View style={styles.forgotContainer}>
             <Pressable style={styles.forgotBTN}>
               <Link href="/forgotPassword">
-                <Text style={styles.forgot}>ESQUECI MINHA SENHA</Text>{" "}
+                <Text style={styles.forgot}>ESQUECI MINHA SENHA</Text>
               </Link>
             </Pressable>
           </View>
         </Link>
       </View>
+
       <View style={styles.buttonContainer}>
         <Pressable style={styles.button} onPress={LoginPrestador}>
           <Text style={styles.text}>ENTRAR</Text>
