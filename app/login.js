@@ -1,10 +1,8 @@
 import { Link, useRouter } from "expo-router";
 import React from "react";
-import { Image, Pressable, Text, TextInput, View, Alert } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage"; 
+import { Image, Pressable, Text, TextInput, View } from "react-native";
 import Header from "../componentes/Head";
 import styles from "../styles/LoginStyles";
-import { LoginUsers } from "../services/LoginUsers";
 
 // SVG's
 import Lockicon from "../assets/vectors/Lockicon";
@@ -19,7 +17,7 @@ export default function Login() {
   const router = useRouter();
 
   const LoginPrestador = async () => {
-    try {
+   /* try {
       const prestador = await LoginUsers(email, senha);
 
       if (prestador) {
@@ -34,7 +32,8 @@ export default function Login() {
     } catch (error) {
       console.error(error);
       Alert.alert("Erro", "Não foi possível fazer login. Tente novamente.");
-    }
+    }*/
+    router.push("/tabs/");
   };
 
   return (

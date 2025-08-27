@@ -1,4 +1,3 @@
-import react from "react";
 import { Dimensions, StyleSheet } from "react-native";
 
 const width = Dimensions.get("screen").width;
@@ -73,6 +72,13 @@ export default StyleSheet.create({
   },
   buttonSelected:{
     backgroundColor: "#6492a7ff",
+    width: width * 0.095,
+    height: heigth * 0.04,
+    margin: 1,
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 3,
   },
   button: {
     width: width * 0.095,

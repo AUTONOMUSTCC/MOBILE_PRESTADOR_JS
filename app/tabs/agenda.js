@@ -97,22 +97,22 @@ export default function Agenda() {
             </Text>
           </View>
 
-          {/* Dias da semana */}
+          {/* DIAS DA SEMANA */}
           <View style={styles.containerWeek}>
             <View style={styles.weekbuttonscontainer}>
               {days.map((day, index) => {
                 const isDaySelected = selected?.index === index;
-               return (
-        <Pressable
-          key={index}
-          style={[styles.button, isDaySelected && styles.buttonSelected]}
-          onPress={() => handlePress(day, index)}
-        >
-          <Text style={[styles.text, isDaySelected && styles.textSelected]}>
-            {day}
-          </Text>
-        </Pressable>
-      );
+                return (
+                  <Pressable
+                    key={index}
+                    style={[styles.button, isDaySelected && styles.buttonSelected]}
+                    onPress={() => handlePress(day, index)}
+                  >
+                    <Text style={[styles.text, isDaySelected && styles.textSelected]}>
+                      {day}
+                    </Text>
+                  </Pressable>
+                );
               })}
             </View>
           </View>
@@ -127,10 +127,10 @@ export default function Agenda() {
               <FlatList
                 data={times}
                 renderItem={renderItem}
-                keyExtractor={(item, index) => `${item}-${index}`} // ✅ corrigido
+                keyExtractor={(item, index) => `${item}-${index}`}
                 numColumns={2}
                 contentContainerStyle={styles.containerOptTime}
-                scrollEnabled={false} // ✅ evita conflito com ScrollView
+                scrollEnabled={false}
               />
             </View>
           </View>
@@ -144,4 +144,5 @@ export default function Agenda() {
       </ScrollView>
     </SafeAreaProvider>
   );
+
 }

@@ -7,6 +7,7 @@ import Calendaricon from "../../assets/vectors/Calendaricon";
 import Chaticon from "../../assets/vectors/Chaticon";
 import Homeicon from "../../assets/vectors/Homeicon";
 import Profileicon from "../../assets/vectors/Profileicon";
+import CreateAd from "../../assets/vectors/CreateAd";
 
 
 export default function TabLayout() {
@@ -36,11 +37,11 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="salvos"
+        name="anuncios"
         options={{
-          title: "Salvos",
+          title: "Anuncios",
           tabBarIcon: ({ color, focused }) => (
-            <Adsicon color={color}/>
+            <CreateAd color={color}/>
           ),
         }}
       />

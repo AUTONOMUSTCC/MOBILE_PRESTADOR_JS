@@ -79,7 +79,7 @@ const HomeScreen = () => {
           <Link href="/tabs/salvos">
             <View style={styles.direita}>
               <CreateAdicon />
-              <Text style={styles.texto}>Editar anúncio</Text>
+              <Text style={styles.texto}>Salvos</Text>
             </View>
           </Link>
         </View>
