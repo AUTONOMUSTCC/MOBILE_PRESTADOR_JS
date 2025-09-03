@@ -2,19 +2,18 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
-  StatusBar,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Pressable,
+    Pressable,
+    StatusBar,
+    Text,
+    TextInput,
+    View,
 } from "react-native";
 import {
-  SafeAreaProvider,
-  SafeAreaView,
-  useSafeAreaInsets,
+    SafeAreaProvider,
+    SafeAreaView,
+    useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import styles from "../../styles/StylesDescription.js";
+import styles from "../../styles/StylesExperience.js";
 
 export default function description() {
   const [description, setdescription] = React.useState("");
@@ -34,10 +33,11 @@ export default function description() {
         </View>
 
         <View style={styles.TitleContainer}>
-          <Text style={styles.TitleText}>Ótimo! Agora, escreva uma breve descrição sobre você e o que você trabalha</Text>
+          <Text style={styles.TitleText}>Escreva sobre suas experiências de trabalho em tópicos</Text>
         </View>
         <View style={styles.SubTitleContainer}>
-          <Text style={styles.SubTitleText} >Conte quem você é e o que você faz de melhor. Descreva brevemente sua profissão, suas habilidades e no que você se destaca. Pense no que as pessoas devem saber logo de cara sobre seu trabalho. Você sempre pode editar depois; apenas certifique-se de revisar agora.</Text>
+          <Text style={styles.SubTitleText} >Compartilhe os lugares por onde você já passou, os tipos de projetos ou
+           funções que realizou e o que aprendeu em cada experiência. Não é preciso listar tudo, destaque o que mais marcou sua trajetória. Use uma linguagem simples e direta,</Text>
         </View>
         <View style={styles.DescriptionContainer} >
           <TextInput style={styles.DescriptionInput}
@@ -48,13 +48,13 @@ export default function description() {
             maxLength={50}
             value={description}
             placeholder="Inclua sua área de atuação, especialidades e como 
-            você costuma resolver os problemas ou atender seus clientes"
+         você costuma resolver os problemas ou atender seus clientes"
             autoCapitalize="none"
           >
           </TextInput>
         </View>
         <View style={styles.BtnContainer}>
-          <Pressable style={styles.btn} onPress={() => router.push('../CreateAdd/description')} ><Text style={styles.BtnText}>Próximo</Text></Pressable>
+            <Pressable style={styles.btn} onPress={() => router.push('../CreateAdd/description')} ><Text style={styles.BtnText}>Próximo</Text></Pressable>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>

@@ -34,26 +34,69 @@ export default StyleSheet.create({
   TitleContainer:{
     width: width * 0.9,
     height: height * 0.1,
-    backgroundColor: "#5511aa",
     justifyContent: 'center',
     alignContent: 'flex-start',
+    marginTop: 10,
   },
-
   TitleText:{
     color: '#000',
-    fontSize: 20,
-    textAlign: 'justify',
+    fontSize: 22,
+    textAlign: 'left',
   },
   SubTitleContainer:{
+    marginTop: 10,
     width: width * 0.9,
-    height: height * 0.2,
-    backgroundColor: "#44aaca",
+    height: height * 0.15,
     justifyContent: 'center',
     alignContent: 'flex-start',
   },
   SubTitleText:{
+    width: width * 0.8,
+    height: height * 0.15,
     color: '#000',
     fontSize: 14,
-    textAlign: 'justify',
-  }
+    textAlign: 'left',
+  },
+  DescriptionContainer:{
+    marginTop:10,
+    width: width,
+    height:  height * 0.4,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  DescriptionInput:{
+    width: width * 0.9,
+    height:  height * 0.4,
+    borderColor: "#BFBFBF",
+    borderWidth: 1,
+    borderRadius: 9,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    color: "#333",
+    textAlign: 'left',
+    padding: 10,
+    backgroundColor: '#aacda2',
+  },
+
+   //Botão
+
+   BtnContainer:{
+    width: width,
+    alignItems: 'flex-end',
+    height: height * 0.055, 
+    justifyContent:'center',
+    paddingRight: "5%",
+  },
+  btn:{
+    backgroundColor:"#A0CEE1",
+    width: width * 0.4,
+    height: height * 0.04,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  BtnText:{
+    fontSize: 14,
+    fontWeight: '500',
+  },
 });
