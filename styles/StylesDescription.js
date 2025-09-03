@@ -5,8 +5,8 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignContent: "flex-start",
-    alignItems: "flex-start",
+    alignContent: "center",
+    alignItems: "center",
     width: width,
     height: height,
   },
@@ -30,4 +30,30 @@ export default StyleSheet.create({
     height: height * 0.03,
     width: width * 0.4,
   },
+
+  TitleContainer:{
+    width: width * 0.9,
+    height: height * 0.1,
+    backgroundColor: "#5511aa",
+    justifyContent: 'center',
+    alignContent: 'flex-start',
+  },
+
+  TitleText:{
+    color: '#000',
+    fontSize: 20,
+    textAlign: 'justify',
+  },
+  SubTitleContainer:{
+    width: width * 0.9,
+    height: height * 0.2,
+    backgroundColor: "#44aaca",
+    justifyContent: 'center',
+    alignContent: 'flex-start',
+  },
+  SubTitleText:{
+    color: '#000',
+    fontSize: 14,
+    textAlign: 'justify',
+  }
 });

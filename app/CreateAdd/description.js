@@ -1,20 +1,16 @@
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import {
-  Image,
-  Pressable,
-  ScrollView,
   StatusBar,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import {
   SafeAreaProvider,
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import React from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
 import styles from "../../styles/StylesDescription.js";
 
 export default function description() {
@@ -34,10 +30,10 @@ export default function description() {
         </View>
 
         <View style={styles.TitleContainer}>
-
+            <Text style={styles.TitleText}>Ótimo! Agora, escreva uma breve descrição sobre você e o que você trabalha</Text>
         </View>
         <View style={styles.SubTitleContainer}> 
-
+          <Text style={styles.SubTitleText} > Conte quem você é e o que você faz de melhor. Descreva brevemente sua profissão, suas habilidades e no que você se destaca. Pense no que as pessoas devem saber logo de cara sobre seu trabalho. Você sempre pode editar depois; apenas certifique-se de revisar agora.</Text>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
