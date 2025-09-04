@@ -58,7 +58,13 @@ export default StyleSheet.create({
         fontSize: 14,
         textAlign: 'left',
     },
+//ExperienceContainer
 
+ExperienceContainer:{
+       width: width * 0.8,
+        height: height * 0.1,
+        backgroundColor: "#551122",
+},
     //Botão
 
     BtnContainer: {
@@ -67,6 +73,7 @@ export default StyleSheet.create({
         height: height * 0.055,
         justifyContent: 'center',
         paddingRight: "5%",
+        marginTop: 80,
     },
     btn: {
         backgroundColor: "#A0CEE1",

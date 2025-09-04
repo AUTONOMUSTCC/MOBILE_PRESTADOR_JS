@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   textSelected: {
-    color: "#357ABD",
+    color: "#A0CEE1",
     fontWeight: "700",
   },
 });

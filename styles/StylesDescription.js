@@ -74,18 +74,19 @@ export default StyleSheet.create({
     alignItems: 'flex-start',
     color: "#333",
     textAlign: 'left',
-    padding: 10,
-    backgroundColor: '#aacda2',
+    textAlignVertical: 'top',
+    padding:20,
+    fontSize: 14,
   },
 
    //Botão
-
    BtnContainer:{
     width: width,
     alignItems: 'flex-end',
     height: height * 0.055, 
     justifyContent:'center',
     paddingRight: "5%",
+    marginTop:10,
   },
   btn:{
     backgroundColor:"#A0CEE1",

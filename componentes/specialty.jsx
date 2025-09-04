@@ -38,7 +38,7 @@ export default function Specialty({ categoriaObj, onSelecionar }) {
                <MaterialIcons
                 name={isSelected ? "check-box" : "check-box-outline-blank"}
                 size={20}
-                color={isSelected ? "#0090CA" : "#888"}
+                color={isSelected ? "#A0CEE1" : "#888"}
               />
               <Text style={[styles.text, isSelected && styles.textSelected, disabled && styles.textDisabled]}>
                 {item}
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   textSelected: {
-    color: "#0090CA",
+    color: "#A0CEE1",
     fontWeight: "600",
   },
   textDisabled: {

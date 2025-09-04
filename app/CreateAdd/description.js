@@ -2,12 +2,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
+  Pressable,
   StatusBar,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  Pressable,
 } from "react-native";
 import {
   SafeAreaProvider,
@@ -45,7 +45,7 @@ export default function description() {
             editable
             multiline
             numberOfLines={10}
-            maxLength={50}
+            maxLength={500}
             value={description}
             placeholder="Inclua sua área de atuação, especialidades e como 
             você costuma resolver os problemas ou atender seus clientes"
@@ -54,7 +54,7 @@ export default function description() {
           </TextInput>
         </View>
         <View style={styles.BtnContainer}>
-          <Pressable style={styles.btn} onPress={() => router.push('../CreateAdd/description')} ><Text style={styles.BtnText}>Próximo</Text></Pressable>
+          <Pressable style={styles.btn} onPress={() => router.push('../CreateAdd/Workexperience')} ><Text style={styles.BtnText}>Próximo</Text></Pressable>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>

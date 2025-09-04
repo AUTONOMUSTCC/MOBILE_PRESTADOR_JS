@@ -77,7 +77,7 @@ export default function Profile() {
             {/*INPUTS FIXOS - só serão editáveis em página de edição */}
             <View style={styles.infos}>
               <Text style={styles.Label}>Gênero</Text>
-              <TextInput style={styles.input} editable={false} type="genero" value={email} ></TextInput>
+              <TextInput style={styles.input} editable={false} type="genero" value={genero} ></TextInput>
 
               <Text style={styles.Label}>Nome</Text>
               <TextInput style={styles.input} editable={false} type="nome" value={nome}></TextInput>

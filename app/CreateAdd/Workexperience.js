@@ -6,6 +6,7 @@ import {
     StatusBar,
     Text,
     TextInput,
+    TouchableOpacity,
     View,
 } from "react-native";
 import {
@@ -14,6 +15,8 @@ import {
     useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import styles from "../../styles/StylesExperience.js";
+import Entypo from '@expo/vector-icons/Entypo';
+
 
 export default function description() {
   const [description, setdescription] = React.useState("");
@@ -39,22 +42,19 @@ export default function description() {
           <Text style={styles.SubTitleText} >Compartilhe os lugares por onde você já passou, os tipos de projetos ou
            funções que realizou e o que aprendeu em cada experiência. Não é preciso listar tudo, destaque o que mais marcou sua trajetória. Use uma linguagem simples e direta,</Text>
         </View>
-        <View style={styles.DescriptionContainer} >
-          <TextInput style={styles.DescriptionInput}
-            onChangeText={setdescription}
-            editable
-            multiline
-            numberOfLines={10}
-            maxLength={50}
-            value={description}
-            placeholder="Inclua sua área de atuação, especialidades e como 
-         você costuma resolver os problemas ou atender seus clientes"
-            autoCapitalize="none"
-          >
-          </TextInput>
+        <View style={styles.ExperienceContainer} >
+         <Pressable>
+          <Text style={styles.BtnTextAdd}>
+                          <Entypo name="plus" size={24} color="black" />
+
+            Adicionar experiência 
+          </Text>
+         </Pressable>
         </View>
         <View style={styles.BtnContainer}>
-            <Pressable style={styles.btn} onPress={() => router.push('../CreateAdd/description')} ><Text style={styles.BtnText}>Próximo</Text></Pressable>
+            <Pressable style={styles.btn} onPress={() => router.push('../CreateAdd/description')} >
+              <Text style={styles.BtnText}>Próximo</Text>
+              </Pressable>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
