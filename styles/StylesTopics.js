@@ -51,14 +51,14 @@ export default StyleSheet.create({
     alignContent: "flex-start",
   },
   SubTitleText: {
-    width: width * 0.77,
+    width: width * 0.78,
     height: height * 0.15,
     color: "#000",
     fontSize: 14,
     textAlign: "left",
   },
 
-  //Adicionar experiencia
+  //Adicionar experiencia botão
 
   ExperienceContainer: {
     width: width * 0.9,
@@ -70,15 +70,15 @@ export default StyleSheet.create({
   },
 
   AddExperience: {
-    width: width * 0.6,
-    height: height * 0.04,
+    width: width * 0.45,
+    height: height * 0.045,
     backgroundColor: "#A0CEE1",
     borderRadius: 4,
     justifyContent: "center",
     verticalAlign: "middle",
     flexDirection: "row",
-    alignItems: "flex-start",
-    alignContent: "flex-start",
+    alignItems: "center",
+    alignContent: "center",
     padding: 8,
   },
   BtnTextAdd: {
@@ -86,9 +86,11 @@ export default StyleSheet.create({
     justifyContent: "center",
     verticalAlign: "middle",
     textAlignVertical: "center",
-  },
-  //Botão
+    paddingLeft: 20,
 
+  },
+
+  //Botão de próximo
   BtnContainer: {
     width: width,
     alignItems: "flex-end",
@@ -98,7 +100,7 @@ export default StyleSheet.create({
   },
   btn: {
     backgroundColor: "#A0CEE1",
-    width: width * 0.35,
+    width: width * 0.3,
     height: height * 0.04,
     borderRadius: 8,
     alignItems: "center",
@@ -125,7 +127,7 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   modalTitle: {
-    fontSize: 18,
+    fontSize: 30,
     fontWeight: "bold",
     marginBottom: 6,
     textAlign: "center",

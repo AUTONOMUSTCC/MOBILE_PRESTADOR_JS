@@ -54,7 +54,7 @@ export default function description() {
           </TextInput>
         </View>
         <View style={styles.BtnContainer}>
-          <Pressable style={styles.btn} onPress={() => router.push('../CreateAdd/Workexperience')} ><Text style={styles.BtnText}>Próximo</Text></Pressable>
+          <Pressable style={styles.btn} onPress={() => router.push('../CreateAdd/Workexperiences')} ><Text style={styles.BtnText}>Próximo</Text></Pressable>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>

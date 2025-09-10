@@ -20,7 +20,9 @@ export default function Login() {
   const router = useRouter();
 
   const Loginuser = async () => {
-    try {
+
+    router.push("/tabs/");
+    /*try {
       const prestador = await LoginUsers(email, senha);
 
       if (prestador) {
@@ -35,7 +37,7 @@ export default function Login() {
       console.error(error);
       Alert.alert("Erro", "Não foi possível fazer login. Tente novamente.");
     }
-
+*/
   };
 
   return (
