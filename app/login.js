@@ -1,7 +1,8 @@
 import { Link, useRouter } from "expo-router";
 import React from "react";
-import { Image, Pressable, Text, TextInput, View } from "react-native";
+import { Alert, Image, Pressable, Text, TextInput, View, } from "react-native";
 import Header from "../componentes/Head";
+import { LoginUsers } from "../services/LoginUsers";
 import styles from "../styles/LoginStyles";
 
 // SVG's
@@ -11,19 +12,20 @@ import Usericon from "../assets/vectors/Usericon";
 // Imagem
 const personagem = require("../assets/images/CharacterLogin.png");
 
+//Funções
+
 export default function Login() {
   const [email, setEmail] = React.useState("");
   const [senha, setSenha] = React.useState("");
   const router = useRouter();
 
-  const LoginPrestador = async () => {
-   /* try {
+  const Loginuser = async () => {
+    try {
       const prestador = await LoginUsers(email, senha);
 
       if (prestador) {
-        // Salva no AsyncStorage
-        await AsyncStorage.setItem("prestador", JSON.stringify(prestador));
 
+        console.log("Prestador logado:", prestador);
         // Navega para a tela principal
         router.push("/tabs/");
       } else {
@@ -32,8 +34,8 @@ export default function Login() {
     } catch (error) {
       console.error(error);
       Alert.alert("Erro", "Não foi possível fazer login. Tente novamente.");
-    }*/
-    router.push("/tabs/");
+    }
+
   };
 
   return (
@@ -78,7 +80,7 @@ export default function Login() {
       </View>
 
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button} onPress={LoginPrestador}>
+        <Pressable style={styles.button} onPress={Loginuser}>
           <Text style={styles.text}>ENTRAR</Text>
         </Pressable>
       </View>

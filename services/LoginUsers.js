@@ -7,13 +7,17 @@ export async function LoginUsers(email, senha) {
       return null;
     }
 
-    const response = await api.get(`/prestador?email=${email}`);
-    let prestador = response.data;
+    // Buscar todos os prestadores
+    const response = await api.get("/prestador");
+    const prestadores = response.data;
 
-    // Se a API retornar array
-    if (Array.isArray(prestador)) {
-      prestador = prestador[0];
+    if (!Array.isArray(prestadores) || prestadores.length === 0) {
+      alert("Nenhum prestador encontrado.");
+      return null;
     }
+
+    // Procurar prestador com o email informado
+    const prestador = prestadores.find(p => p.email === email);
 
     if (!prestador) {
       alert("E-mail não encontrado.");
