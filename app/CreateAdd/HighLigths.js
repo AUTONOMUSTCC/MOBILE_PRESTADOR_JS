@@ -15,7 +15,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import styles from "../../styles/StylesTopics.js";
+import styles from "../../styles/StylesHighLigths.js";
 
 const Card = ({ text }) => {
   return (
@@ -59,16 +59,13 @@ export default function Topicswork() {
 
       <View style={styles.TitleContainer}>
         <Text style={styles.TitleText}>
-          Escreva sobre o que você faz em tópicos para facilitar a compreensão
-          do cliente{" "}
+          Por que me escolher? Destaque o que faz você se destacar
         </Text>
       </View>
 
       <View style={styles.SubTitleContainer}>
         <Text style={styles.SubTitleText}>
-          Liste suas principais habilidades de forma direta e organizada. Use
-          tópicos curtos e claros, como se estivesse explicando para alguém que
-          quer entender rapidamente como você pode ajudar.
+         Este é o momento de mostrar ao cliente o que torna seu trabalho único. Escreva sobre suas qualidades, formas de atendimento ou resultados que você costuma entregar e que o tornam singular.
         </Text>
       </View>
 
@@ -103,7 +100,7 @@ export default function Topicswork() {
 
             <TextInput
               style={styles.input}
-              placeholder="liste suas principais habilidades e o que você faz"
+              placeholder="liste suas principais habilidades e o que te torna diferente dos demais"
               multiline
               numberOfLines={5}
               maxLength={150}
@@ -131,7 +128,7 @@ export default function Topicswork() {
       <View style={styles.BtnContainer}>
         <Pressable
           style={styles.btn}
-          onPress={() => router.push("../CreateAdd/HighLigths")}
+          onPress={() => router.push("../CreateAdd/ServiceMode")}
         >
           <Text style={styles.BtnText}>Próximo</Text>
         </Pressable>

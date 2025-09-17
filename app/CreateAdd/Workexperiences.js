@@ -29,18 +29,18 @@ const Card = ({ text }) => {
 export default function Workexperiences() {
   const [modalVisible, setModalVisible] = useState(false);
   const [experiencia, setExperiencia] = useState([]);
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState("");
   const insets = useSafeAreaInsets();
   const router = useRouter();
 
   const handleAddExperience = () => {
-    if (inputText.trim() !== '') {
-      setExperiencia(prev => {
+    if (inputText.trim() !== "") {
+      setExperiencia((prev) => {
         const updated = [...prev, inputText.trim()];
         console.log("Experiência adicionada:", updated);
         return updated;
       });
-      setInputText('');
+      setInputText("");
       setModalVisible(false);
     }
   };
@@ -91,9 +91,19 @@ export default function Workexperiences() {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalTitle}>
-              Adicione uma experiência de trabalho
-            </Text>
+            <View style={styles.ModalHeader}>
+              <Text style={styles.modalTitle}>
+                Adicione uma experiência de trabalho
+              </Text>
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <AntDesign
+                  name="close"
+                  size={22}
+                  color="black"
+                />
+              </TouchableOpacity>
+            </View>
+
             <Text style={styles.modalSubtitle}>
               ATENÇÃO! Adicione uma experiência por vez
             </Text>

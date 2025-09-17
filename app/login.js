@@ -1,8 +1,7 @@
 import { Link, useRouter } from "expo-router";
 import React from "react";
-import { Alert, Image, Pressable, Text, TextInput, View, } from "react-native";
+import { Image, Pressable, Text, TextInput, View } from "react-native";
 import Header from "../componentes/Head";
-import { LoginUsers } from "../services/LoginUsers";
 import styles from "../styles/LoginStyles";
 
 // SVG's
@@ -20,7 +19,6 @@ export default function Login() {
   const router = useRouter();
 
   const Loginuser = async () => {
-
     router.push("/tabs/");
     /*try {
       const prestador = await LoginUsers(email, senha);
