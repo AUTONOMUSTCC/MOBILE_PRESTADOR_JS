@@ -54,7 +54,7 @@ export default StyleSheet.create({
     paddingLeft: 10,
   },
   SubTitleText: {
-    width: width * 0.78,
+    width: width * 0.75,
     height: height * 0.15,
     color: "#000",
     fontSize: 14,
@@ -168,10 +168,10 @@ export default StyleSheet.create({
   },
   addButton: {
     backgroundColor: "#A0CEE1",
-    paddingVertical: 12,
-    paddingHorizontal: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
     borderRadius: 6,
-    alignSelf: "center",
+    alignSelf: "flex-start",
   },
   addButtonText: {
     color: "#000",

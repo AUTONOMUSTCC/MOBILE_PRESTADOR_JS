@@ -15,7 +15,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import styles from "../../styles/StylesTopics.js";
+import styles from "../../styles/StylesServiceMode.js";
 
 const Card = ({ text }) => {
   return (
@@ -59,16 +59,18 @@ export default function Topicswork() {
 
       <View style={styles.TitleContainer}>
         <Text style={styles.TitleText}>
-          Escreva sobre o que você faz em tópicos para facilitar a compreensão
-          do cliente{" "}
+          Fale sobre sua abordagem de trabalho, métodos para alcançar o objetivo
+          do cliente e formas de atendimento{" "}
         </Text>
       </View>
 
       <View style={styles.SubTitleContainer}>
         <Text style={styles.SubTitleText}>
-          Liste suas principais habilidades de forma direta e organizada. Use
-          tópicos curtos e claros, como se estivesse explicando para alguém que
-          quer entender rapidamente como você pode ajudar.
+          Aqui você deve escolher uma forma de atendimento (presencial, online,
+          tanto faz/a combinar) e pode explicar como você trabalha, como lida
+          com os clientes, quais etapas costuma seguir ou que tipo de relação
+          profissional valoriza. Isso ajuda o cliente a entender o que esperar
+          ao contratar seus serviços.{" "}
         </Text>
       </View>
 
@@ -92,10 +94,10 @@ export default function Topicswork() {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.ModalHeader}>
-            <Text style={styles.modalTitle}>Adicione um item</Text>
-            <TouchableOpacity onPress={() => setModalVisible(false)}>
-              <AntDesign name="close" size={24} color="black" />
-            </TouchableOpacity>
+              <Text style={styles.modalTitle}>Adicione um item</Text>
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <AntDesign name="close" size={24} color="black" />
+              </TouchableOpacity>
             </View>
             <Text style={styles.modalSubtitle}>
               ATENÇÃO! Adicione um item por vez
@@ -103,7 +105,7 @@ export default function Topicswork() {
 
             <TextInput
               style={styles.input}
-              placeholder="liste suas principais habilidades e o que você faz"
+              placeholder="liste suas principais habilidades e o que te torna diferente dos demais"
               multiline
               numberOfLines={5}
               maxLength={150}
@@ -131,7 +133,7 @@ export default function Topicswork() {
       <View style={styles.BtnContainer}>
         <Pressable
           style={styles.btn}
-          onPress={() => router.push("../CreateAdd/HighLigths")}
+          onPress={() => router.push("../CreateAdd/description")}
         >
           <Text style={styles.BtnText}>Próximo</Text>
         </Pressable>

@@ -8,7 +8,7 @@ export async function LoginUsers(email, senha) {
     }
 
     // Buscar todos os prestadores
-    const response = await api.get("/prestador");
+    const response = await api.get("/Prestador");
     const prestadores = response.data;
 
     if (!Array.isArray(prestadores) || prestadores.length === 0) {

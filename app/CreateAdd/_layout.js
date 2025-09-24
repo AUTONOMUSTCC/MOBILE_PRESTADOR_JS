@@ -6,6 +6,8 @@ export default function RootLayout() {
       <Stack.Screen name="description" options={{ headerShown: false }} />
       <Stack.Screen name="Workexperiences" options={{ headerShown: false }} />
       <Stack.Screen name="Topicswork" options={{ headerShown: false }} />
+      <Stack.Screen name="HighLigths" options={{ headerShown: false }} />
+      <Stack.Screen name="ServiceMode" options={{ headerShown: false }} />
 
     </Stack>
   );
