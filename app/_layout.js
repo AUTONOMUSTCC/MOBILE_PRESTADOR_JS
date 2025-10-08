@@ -11,7 +11,7 @@ export default function RootLayout() {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="newPassword" options={{ headerShown: false }} />
-      <Stack.Screen name="tabs" options={{ headerShown: true }} />
+      <Stack.Screen name="tabs" options={{ headerShown: false }} />
 
       <Stack.Screen
         name="notifications"
@@ -21,6 +21,10 @@ export default function RootLayout() {
           animation: "slide_from_bottom",
         }}
       />
+      <Stack.Screen name="Edibleprofile" options={{ headerShown: false }} />
+      <Stack.Screen name="Reviews" options={{ headerShown: true }} />
+      <Stack.Screen name="EdiblePassword" options={{ headerShown: true }} />
+
     </Stack>
   );
 }

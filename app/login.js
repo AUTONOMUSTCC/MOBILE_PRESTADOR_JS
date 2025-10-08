@@ -1,9 +1,9 @@
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import React from "react";
-import { Image, Pressable, Text, TextInput, View } from "react-native";
+import { Alert, Image, Pressable, Text, TextInput, View } from "react-native";
 import Header from "../componentes/Head";
+import api from "../services/api";
 import styles from "../styles/LoginStyles";
-
 // SVG's
 import Lockicon from "../assets/vectors/Lockicon";
 import Usericon from "../assets/vectors/Usericon";
@@ -11,32 +11,46 @@ import Usericon from "../assets/vectors/Usericon";
 // Imagem
 const personagem = require("../assets/images/CharacterLogin.png");
 
-//Funções
+//Métodos
+
+
 
 export default function Login() {
-  const [email, setEmail] = React.useState("");
-  const [senha, setSenha] = React.useState("");
+  const [emailprest, setEmail] = React.useState("");
+  const [senhaprest, setSenha] = React.useState("");
   const router = useRouter();
 
-  const Loginuser = async () => {
-    router.push("/tabs/");
-    /*try {
-      const prestador = await LoginUsers(email, senha);
 
-      if (prestador) {
-
-        console.log("Prestador logado:", prestador);
-        // Navega para a tela principal
-        router.push("/tabs/");
-      } else {
-        Alert.alert("Erro", "E-mail e/ou senha inválidos.");
-      }
-    } catch (error) {
-      console.error(error);
-      Alert.alert("Erro", "Não foi possível fazer login. Tente novamente.");
+  //método de login para prestadorr
+  const handleLogin = async(emailprest, senhaprest) => {
+   if (emailprest == "" || senhaprest == ""){
+    Alert.alert("Preencha todos os campos para realizar o login!");
+    return;
+   }
+   try{
+    const login={
+      email: emailprest,
+      senha: senhaprest,
+    };
+    const response = await api.post('/api/Login', login);
+    const tipo = response.tipo;
+    if (tipo == 'prestador'){
+      console.log("Login autorizado");
+      router.push('/tabs/');
     }
-*/
-  };
+   }
+   catch(error){
+    if(error == 'Request failed with status code 404'){
+      Alert.alert("Usuário não encontrado", "Verifique o email e senha");
+      setSenha = "";
+      return;
+    }
+    console.error(error);
+    return;
+   }
+
+  }
+
 
   return (
     <View style={styles.container}>
@@ -51,7 +65,7 @@ export default function Login() {
           <TextInput
             style={styles.entry}
             onChangeText={setEmail}
-            value={email}
+            value={emailprest}
             placeholder="Email"
             autoCapitalize="none"
             keyboardType="email-address"
@@ -62,25 +76,22 @@ export default function Login() {
           <TextInput
             style={styles.entry}
             onChangeText={setSenha}
-            value={senha}
+            value={senhaprest}
             placeholder="Senha"
             secureTextEntry
           />
         </View>
 
-        <Link href="/forgotPassword" style={styles.forgotContainer}>
-          <View style={styles.forgotContainer}>
-            <Pressable style={styles.forgotBTN}>
-              <Link href="/forgotPassword">
-                <Text style={styles.forgot}>ESQUECI MINHA SENHA</Text>
-              </Link>
-            </Pressable>
-          </View>
-        </Link>
+        <Pressable
+          style={styles.forgotBTN}
+          onPress={() => router.push("/forgotPassword")}
+        >
+          <Text style={styles.forgot}>ESQUECI MINHA SENHA</Text>
+        </Pressable>
       </View>
 
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button} onPress={Loginuser}>
+        <Pressable style={styles.button} onPress={() => handleLogin(emailprest, senhaprest)}>
           <Text style={styles.text}>ENTRAR</Text>
         </Pressable>
       </View>

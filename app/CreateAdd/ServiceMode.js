@@ -26,12 +26,17 @@ const Card = ({ text }) => {
   );
 };
 
-export default function Topicswork() {
+export default function ServiceMode() {
+  const [selectedmode, setmode] = useState();
   const [modalVisible, setModalVisible] = useState(false);
   const [topic, setTopic] = useState([]);
   const [inputText, setInputText] = useState("");
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const [remoto, setRemoto] = useState(false);
+  const [hibrido, sethibrido] = useState(false);
+  const [presencial, setpresencial] = useState(false);
+
 
   const handleAddExperience = () => {
     if (inputText.trim() !== "") {
@@ -46,7 +51,7 @@ export default function Topicswork() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
+    <SafeAreaView style={[styles.container, { paddingTop: insets.top , paddingBottom: insets.bottom}]}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
       <View style={styles.header}>
         <View style={styles.icon}>
@@ -60,7 +65,7 @@ export default function Topicswork() {
       <View style={styles.TitleContainer}>
         <Text style={styles.TitleText}>
           Fale sobre sua abordagem de trabalho, métodos para alcançar o objetivo
-          do cliente e formas de atendimento{" "}
+          do cliente e formas de atendimento
         </Text>
       </View>
 
@@ -70,8 +75,39 @@ export default function Topicswork() {
           tanto faz/a combinar) e pode explicar como você trabalha, como lida
           com os clientes, quais etapas costuma seguir ou que tipo de relação
           profissional valoriza. Isso ajuda o cliente a entender o que esperar
-          ao contratar seus serviços.{" "}
+          ao contratar seus serviços.
         </Text>
+      </View>
+
+      <View style={styles.Modecontainer}>
+        <Text style={styles.TitleText}>Forma de atendimento</Text>
+        <TouchableOpacity
+          style={styles.stylesToucheable}
+          onPress={() => setRemoto(!remoto)}
+        >
+          <View style={styles.ViewCheck}>
+            {remoto && <View style={styles.ViewCheckSquare} />}
+          </View>
+          <Text>Remoto</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.stylesToucheable}
+          onPress={() => sethibrido(!hibrido)}
+        >
+          <View style={styles.ViewCheck}>
+            {hibrido && <View style={styles.ViewCheckSquare} />}
+          </View>
+          <Text>Hibrido</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.stylesToucheable}
+          onPress={() => setpresencial(!presencial)}
+        >
+          <View style={styles.ViewCheck}>
+            {presencial && <View style={styles.ViewCheckSquare} />}
+          </View>
+          <Text>Presencial</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.ExperienceContainer}>
@@ -133,7 +169,7 @@ export default function Topicswork() {
       <View style={styles.BtnContainer}>
         <Pressable
           style={styles.btn}
-          onPress={() => router.push("../CreateAdd/description")}
+          onPress={() => router.push("../CreateAdd/ValueperHour")}
         >
           <Text style={styles.BtnText}>Próximo</Text>
         </Pressable>

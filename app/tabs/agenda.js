@@ -17,51 +17,43 @@ import styles from "../../styles/AgendaStyles.js";
 
 export default function Agenda() {
   const insets = useSafeAreaInsets();
-  const [selected, setSelected] = useState(null); // dias
+  const [selectedDayId, setSelectedDayId] = useState(null); // dia selecionado
   const [selectedtime, setTimeselected] = useState([]); // horários
 
-  const days = ["D", "S", "T", "Q", "Q", "S", "S"];
+  // Dias da semana com IDs únicos
+  const days = [
+    { id: 1, label: "D" },
+    { id: 2, label: "S" },
+    { id: 3, label: "T" },
+    { id: 4, label: "Q" },
+    { id: 5, label: "Q" },
+    { id: 6, label: "S" },
+    { id: 7, label: "S" },
+  ];
 
-  const handlePress = (day) => {
-    setSelected(day);
+  // Função chamada ao clicar num dia
+  const handleDayPress = (dayId) => {
+    setSelectedDayId(dayId);
+    console.log("Dia selecionado ID:", dayId);
   };
 
+  // Função para alternar horários
   const toggleSelection = (time) => {
     if (selectedtime.includes(time)) {
-      setTimeselected(selectedtime.filter((t) => t !== time)); // ✅ corrigido
+      setTimeselected(selectedtime.filter((t) => t !== time));
     } else {
       setTimeselected([...selectedtime, time]);
     }
   };
 
-  //Criando um array com os horários
+  // Array de horários
   const times = [
-    "00:00",
-    "12:00",
-    "01:00",
-    "13:00",
-    "02:00",
-    "14:00",
-    "03:00",
-    "15:00",
-    "04:00",
-    "16:00",
-    "05:00",
-    "17:00",
-    "06:00",
-    "18:00",
-    "07:00",
-    "19:00",
-    "08:00",
-    "20:00",
-    "09:00",
-    "21:00",
-    "10:00",
-    "22:00",
-    "11:00",
-    "23:00",
+    "00:00", "12:00", "01:00", "13:00", "02:00", "14:00", "03:00", "15:00",
+    "04:00", "16:00", "05:00", "17:00", "06:00", "18:00", "07:00", "19:00",
+    "08:00", "20:00", "09:00", "21:00", "10:00", "22:00", "11:00", "23:00",
   ];
 
+  // Renderiza horários
   const renderItem = ({ item }) => {
     const isSelected = selectedtime.includes(item);
     return (
@@ -97,19 +89,27 @@ export default function Agenda() {
             </Text>
           </View>
 
-          {/* DIAS DA SEMANA */}
+          {/* 🔹 Botões dos dias da semana */}
           <View style={styles.containerWeek}>
             <View style={styles.weekbuttonscontainer}>
-              {days.map((day, index) => {
-                const isDaySelected = selected?.index === index;
+              {days.map((day) => {
+                const isSelected = selectedDayId === day.id;
                 return (
                   <Pressable
-                    key={index}
-                    style={[styles.button, isDaySelected && styles.buttonSelected]}
-                    onPress={() => handlePress(day, index)}
+                    key={day.id}
+                    style={[
+                      styles.button,
+                      isSelected && styles.buttonSelected,
+                    ]}
+                    onPress={() => handleDayPress(day.id)}
                   >
-                    <Text style={[styles.text, isDaySelected && styles.textSelected]}>
-                      {day}
+                    <Text
+                      style={[
+                        styles.text,
+                        isSelected && styles.textSelected,
+                      ]}
+                    >
+                      {day.label}
                     </Text>
                   </Pressable>
                 );
@@ -117,11 +117,10 @@ export default function Agenda() {
             </View>
           </View>
 
-          {/* Horários */}
+          {/* 🔹 Horários */}
           <View style={styles.containerTime}>
             <Text style={styles.Subtitle}>
-              Selecione os horários que você possui DISPONÍVEL nas
-              segundas-feiras
+              Selecione os horários que você possui DISPONÍVEL
             </Text>
             <View style={styles.timeoptions}>
               <FlatList
@@ -144,5 +143,4 @@ export default function Agenda() {
       </ScrollView>
     </SafeAreaProvider>
   );
-
 }

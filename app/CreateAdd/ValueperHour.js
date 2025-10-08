@@ -15,7 +15,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import styles from "../../styles/StylesHighLigths.js";
+import styles from "../../styles/StylesValueperHour.js";
 
 const Card = ({ text }) => {
   return (
@@ -26,12 +26,31 @@ const Card = ({ text }) => {
   );
 };
 
-export default function HighLigths() {
+export default function ServiceMode() {
+  const [selectedmode, setmode] = useState();
   const [modalVisible, setModalVisible] = useState(false);
   const [topic, setTopic] = useState([]);
   const [inputText, setInputText] = useState("");
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const [value, setValue] = useState("");
+ 
+
+  const formatCurrency = (text) => {
+    // Remove tudo que não for número
+    let num = text.replace(/\D/g, "");
+    // Divide por 100 para ter centavos
+    let val = (parseInt(num, 10) / 100).toFixed(2);
+    // Troca ponto por vírgula
+    val = val.replace(".", ",");
+    // Adiciona separador de milhar
+    val = val.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return val;
+  };
+
+  const handleChange = (text) => {
+    setValue(formatCurrency(text));
+  };
 
   const handleAddExperience = () => {
     if (inputText.trim() !== "") {
@@ -46,7 +65,7 @@ export default function HighLigths() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
+    <SafeAreaView style={[styles.container, { paddingTop: insets.top , paddingBottom: insets.bottom}]}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
       <View style={styles.header}>
         <View style={styles.icon}>
@@ -59,14 +78,40 @@ export default function HighLigths() {
 
       <View style={styles.TitleContainer}>
         <Text style={styles.TitleText}>
-          Por que me escolher? Destaque o que faz você se destacar
+          Quase tudo pronto! Vamos apenas definir o seu preço por hora de trabalho
         </Text>
       </View>
 
       <View style={styles.SubTitleContainer}>
         <Text style={styles.SubTitleText}>
-         Este é o momento de mostrar ao cliente o que torna seu trabalho único. Escreva sobre suas qualidades, formas de atendimento ou resultados que você costuma entregar e que o tornam singular.
+         Informe quanto você cobra por hora pelos seus serviços. 
+         Pense no valor que representa sua experiência, a qualidade do seu 
+         atendimento e o tipo de solução que você oferece. Os clientes verão 
+         essa taxa no seu perfil e nos resultados de pesquisa assim que você 
+         publicar seu perfil. 
         </Text>
+      </View>
+
+      <View style={styles.Modecontainer}>
+        <Text style={styles.TitleText}>Valor por Hora</Text>
+         <View
+      style={styles.Viewvaluesinput}
+    >
+      {/* Prefixo */}
+      <Text style={{ marginRight: 4 }}>R$</Text>
+
+      {/* Input editável */}
+      <TextInput
+        style={{ flex: 1, fontSize: 16 }}
+        value={value}
+        onChangeText={handleChange}
+        keyboardType="numeric"
+        placeholder="0,00"
+      />
+
+      {/* Sufixo */}
+      <Text style={{ marginLeft: 4 }}>/hr</Text>
+    </View>
       </View>
 
       <View style={styles.ExperienceContainer}>
@@ -89,10 +134,10 @@ export default function HighLigths() {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.ModalHeader}>
-            <Text style={styles.modalTitle}>Adicione um item</Text>
-            <TouchableOpacity onPress={() => setModalVisible(false)}>
-              <AntDesign name="close" size={24} color="black" />
-            </TouchableOpacity>
+              <Text style={styles.modalTitle}>Adicione um item</Text>
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <AntDesign name="close" size={24} color="black" />
+              </TouchableOpacity>
             </View>
             <Text style={styles.modalSubtitle}>
               ATENÇÃO! Adicione um item por vez
@@ -128,7 +173,7 @@ export default function HighLigths() {
       <View style={styles.BtnContainer}>
         <Pressable
           style={styles.btn}
-          onPress={() => router.push("../CreateAdd/ServiceMode")}
+          onPress={() => router.push("../CreateAdd/description")}
         >
           <Text style={styles.BtnText}>Próximo</Text>
         </Pressable>

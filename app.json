@@ -9,7 +9,7 @@
     "newArchEnabled": true,
     "scheme": "mobilePrestador",
     "splash": {
-      "image": "./assets/images/logoprestador.png",
+      "image": "../assets/images/logoprestador.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

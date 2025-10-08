@@ -95,11 +95,12 @@ export default StyleSheet.create({
 
   //Botão de próximo
   BtnContainer: {
-    width: width  ,
+    width: width,
     alignItems: "flex-end",
     height: height * 0.1,
     justifyContent: "center",
     paddingRight: "5%",
+    backgroundColor: "#A0CEE1",
   },
   btn: {
     backgroundColor: "#A0CEE1",
@@ -115,17 +116,25 @@ export default StyleSheet.create({
   },
 
   //CHECKBOXES COM OPÇÃO DE MODO DE TRABALHO
-  
+
   Modecontainer: {
     width: width * 0.85,
-    height: height * 0.15,
-    marginTop: 15,
+    height: height * 0.1,
+    marginTop: 5,
     alignContent: "center",
     justifyContent: "center",
+    marginBottom: 5,
   },
-  stylesToucheable: {
-    flexDirection: "row", 
-    alignItems: "center" 
+  Viewvaluesinput: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#aaa",
+    borderRadius: 5,
+    paddingHorizontal: 8,
+    height: 40,
+    width: 200,
+    marginTop: 10,
   },
 
   ViewCheck: {
@@ -213,7 +222,7 @@ export default StyleSheet.create({
   //Resposta do modal
   containeraftermodal: {
     width: width * 0.9,
-    height: height * 0.2,
+    height: height * 0.3,
     alignItems: "center",
     justifyContent: "flex-start",
   },
@@ -239,7 +248,4 @@ export default StyleSheet.create({
     paddingRight: 5,
     paddingTop: 2,
   },
-
- 
-
 });

@@ -11,6 +11,7 @@ import {
 
 import Agendaicon from "../assets/vectors/Agendaicon";
 import Searchicon2 from "../assets/vectors/Searchicon2";
+import CreateAdicon from "../assets/vectors/CreateAdicon";
 // CONSTANTES
 const { width } = Dimensions.get("screen");
 const heightTotal = Dimensions.get("screen").height;
@@ -26,16 +27,16 @@ const data = [
   {
     image: <Searchicon2 />,
     id: "2",
-    title: "Slide 2",
-    description: "Descrição do slide 2",
+    title: "Pesquisa Rápida",
+    description: "Encontre rapidamente serviço buscando por categoria",
     screen: "chat",
   },
   {
-    image: <Searchicon2 />,
+    image: <CreateAdicon />,
     id: "3",
-    title: "Slide 3",
-    description: "Descrição do slide 3",
-    screen: "salvos",
+    title: "Anunciar seu serviço ",
+    description: "Divulgue seu trabalho por meio de um anuncio",
+    screen: "anuncios",
   },
 ];
 

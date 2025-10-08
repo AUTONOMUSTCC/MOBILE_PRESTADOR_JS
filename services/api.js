@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://10.0.2.2:5232", 
+  baseURL: "https://williams-trouserless-tajuana.ngrok-free.dev", 
 });
 
 export default api;

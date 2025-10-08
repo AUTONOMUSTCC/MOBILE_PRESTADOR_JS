@@ -8,7 +8,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#A0CEE1",
-    height: heightTotal * 0.6,
+    height: heightTotal ,
     width: widthTotal,
   },
   /*PESQUISA */

@@ -6,7 +6,7 @@ import {
   ScrollView,
   Text,
   TextInput,
-  View
+  View,   StatusBar
 } from "react-native";
 import Carrousel from "../../componentes/carrouselCard";
 import CarrouselCategorias from "../../componentes/carrouselCategorias";
@@ -38,6 +38,11 @@ const HomeScreen = () => {
       contentContainerStyle={{ paddingBottom: 0, alignItems: "center" }}
     >
       {/*PESQUISA */}
+        {/* STATUS BAR */}
+            <StatusBar 
+              barStyle="dark-content" // cor do texto da barra 
+              backgroundColor="#fff" // cor de fundo
+            />
       <View style={styles.pesquisaContainer}>
         <View style={styles.inputPesquisa}>
           <Searchicon />
@@ -76,7 +81,7 @@ const HomeScreen = () => {
             </View>
           </Link>
 
-          <Link href="/tabs/salvos">
+          <Link href="../salvos">
             <View style={styles.direita}>
               <CreateAdicon />
               <Text style={styles.texto}>Salvos</Text>
