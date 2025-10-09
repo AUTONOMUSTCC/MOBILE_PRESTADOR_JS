@@ -11,10 +11,6 @@ import Usericon from "../assets/vectors/Usericon";
 // Imagem
 const personagem = require("../assets/images/CharacterLogin.png");
 
-//Métodos
-
-
-
 export default function Login() {
   const [emailprest, setEmail] = React.useState("");
   const [senhaprest, setSenha] = React.useState("");
@@ -28,21 +24,30 @@ export default function Login() {
     return;
    }
    try{
-    const login={
+    const login = {
       email: emailprest,
       senha: senhaprest,
-    };
+    }
     const response = await api.post('/api/Login', login);
-    const tipo = response.tipo;
-    if (tipo == 'prestador'){
-      console.log("Login autorizado");
-      router.push('/tabs/');
+    const tipoUser = response.data[0]?.tipo; // esse código é pq o back manda como vetor e não string direto
+    //console.log(tipoUser); -> usei para testar a resposta
+    if (tipoUser === 'prestador'){
+      console.log("Login válido");
+      //router.push("/tabs/");
+      const dadosprestadores = await api.get("/Prestador");
+      const prestadores = dadosprestadores.data;
+      const user = prestadores.find((prestador) => prestador.emailPrestador === emailprest);
+      const id = user.idPrestador;
+      return (id);
+    }
+    else if(tipoUser === 'cliente'){
+      Alert.alert("Erro de login!", "Verifique se o e-mail e senha pertencem a uma conta do tipo Prestador de serviços.");
+      console.log("Login inválido");
     }
    }
    catch(error){
     if(error == 'Request failed with status code 404'){
       Alert.alert("Usuário não encontrado", "Verifique o email e senha");
-      setSenha = "";
       return;
     }
     console.error(error);
@@ -66,7 +71,7 @@ export default function Login() {
             style={styles.entry}
             onChangeText={setEmail}
             value={emailprest}
-            placeholder="Email"
+            placeholder="Insira seu e-mail cadastrado"
             autoCapitalize="none"
             keyboardType="email-address"
           />
@@ -77,7 +82,7 @@ export default function Login() {
             style={styles.entry}
             onChangeText={setSenha}
             value={senhaprest}
-            placeholder="Senha"
+            placeholder="insira sua senha"
             secureTextEntry
           />
         </View>

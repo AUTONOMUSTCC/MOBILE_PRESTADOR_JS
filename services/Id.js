@@ -1,7 +1,7 @@
 import React from "react";
 
-const ID = (valorID) => {
-  const id = valorID;
+const ID = (id) => {
+ 
 }
 
 export default ID;

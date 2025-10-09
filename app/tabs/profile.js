@@ -57,7 +57,6 @@ export default function Profile() {
 
 
 //  PUXANDO DO BANCO
-    
   useEffect(() => {
     const id = 5;
     const carregarUsuario = async () => {
