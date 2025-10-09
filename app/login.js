@@ -4,6 +4,7 @@ import { Alert, Image, Pressable, Text, TextInput, View } from "react-native";
 import Header from "../componentes/Head";
 import api from "../services/api";
 import styles from "../styles/LoginStyles";
+import { setUserId } from "../services/Id";
 // SVG's
 import Lockicon from "../assets/vectors/Lockicon";
 import Usericon from "../assets/vectors/Usericon";
@@ -33,12 +34,12 @@ export default function Login() {
     //console.log(tipoUser); -> usei para testar a resposta
     if (tipoUser === 'prestador'){
       console.log("Login válido");
-      //router.push("/tabs/");
       const dadosprestadores = await api.get("/Prestador");
       const prestadores = dadosprestadores.data;
       const user = prestadores.find((prestador) => prestador.emailPrestador === emailprest);
       const id = user.idPrestador;
-      return (id);
+      setUserId(id);
+      router.push("/tabs/");
     }
     else if(tipoUser === 'cliente'){
       Alert.alert("Erro de login!", "Verifique se o e-mail e senha pertencem a uma conta do tipo Prestador de serviços.");

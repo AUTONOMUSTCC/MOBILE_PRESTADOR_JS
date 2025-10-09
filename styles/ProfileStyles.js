@@ -1,8 +1,8 @@
 import { Dimensions, StyleSheet } from "react-native";
 
 export const { width } = Dimensions.get("window");
-const widthTotal = Dimensions.get("screen").width;
-const heightTotal = Dimensions.get("screen").height;
+const widthTotal = Dimensions.get("window").width;
+const heightTotal = Dimensions.get("window").height;
 
 export default StyleSheet.create({
   //GERAL
@@ -21,7 +21,7 @@ export default StyleSheet.create({
   head: {
     display: "flex",
     flexDirection: "row",
-    height: heightTotal * 0.1,
+    height: heightTotal * 0.12,
     width: widthTotal * 0.9,
     alignItems: "center",
   },
@@ -62,7 +62,7 @@ export default StyleSheet.create({
     width: widthTotal * 0.9,
     alignItems: "flex-start",
     flexDirection: "row",
-    marginTop: 40,
+    marginTop: 20,
   },
   background: {
     width: widthTotal * 0.26,
@@ -189,7 +189,7 @@ export default StyleSheet.create({
     borderWidth: 1,
     color: "#000",
     paddingLeft: 10,
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: "medium",
   },
 

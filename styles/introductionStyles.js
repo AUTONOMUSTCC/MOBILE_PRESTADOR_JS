@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
-const widthTotal = Dimensions.get("screen").width;
-const heightTotal = Dimensions.get("screen").height;
+const widthTotal = Dimensions.get("window").width;
+const heightTotal = Dimensions.get("window").height;
 
 export default StyleSheet.create({
   //GERAL
@@ -13,7 +13,7 @@ export default StyleSheet.create({
   },
   //VIEW IMG
   viewimg: {
-    marginTop: '30%',
+    marginTop: 20,
     width: widthTotal,
     height: heightTotal * 0.25,
     alignContent: "center",
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     display: "flex",
     width: widthTotal,
-    height: heightTotal * 0.3,
+    height: heightTotal * 0.35,
   },
   titulo: {
     width: widthTotal * 0.8,

@@ -1,0 +1,9 @@
+ "idPrestador": 0,
+  +"nomePrestador": "string",
+ + "sobrenomePrestador": "string",
+  +"emailPrestador": "string",
+ + "generoPrestador": "string",
+  +"estadoPrestador": "string",
+ + "telefonePrestador": "string",
++  "senhaPrestador": "string",
++  "avaliacaoPrestador": 0

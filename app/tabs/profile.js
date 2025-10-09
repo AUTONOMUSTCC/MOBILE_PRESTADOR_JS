@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Rating } from "react-native-ratings";
 import api from "../../services/api.js";
+import { getUserId } from "../../services/Id.js";
 import styles from "../../styles/ProfileStyles.js";
 
 //IMAGES
@@ -22,8 +23,9 @@ import ChangeImage from "../../assets/vectors/ChangeImage.jsx";
 import Localicon from "../../assets/vectors/Localicon.jsx";
 import Settingsicon from "../../assets/vectors/SettingsIcon.jsx";
 
+//consts - variáveis
 
-
+//consts - métodos
 const getPrestadorById = async (id) => {
   try {
     const response = await api('/prestador');
@@ -40,7 +42,7 @@ const getPrestadorById = async (id) => {
 
 
 export default function Profile() {
-  const [value, setValue] = React.useState(2);
+  //const [value, setValue] = React.useState(2);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   //CONST'S
   const [email, setEmail] = React.useState("");
@@ -49,25 +51,25 @@ export default function Profile() {
   const [telefone, setTelefone] = React.useState("");
   const [genero, setGenero] = React.useState("");
   const [cidade, setCidade] = React.useState("");
-  const [dtnascimento, setDtnascimento] = React.useState("");
+ // const [dtnascimento, setDtnascimento] = React.useState("");
   const [aval, setavalprestador] = React.useState("");
-  const dataFormatada = dtnascimento.split("T")[0];
+ /* const dataFormatada = dtnascimento.split("T")[0];*/
   const nomeCompleto = nome + sobrenome;
 
-
+  let id = 0;
 
 //  PUXANDO DO BANCO
   useEffect(() => {
-    const id = 5;
     const carregarUsuario = async () => {
+      const id =  await getUserId();
       const user = await getPrestadorById(id); // aqui você passa o id desejado
        setEmail(user.emailPrestador);
        setNome(user.nomePrestador);
        setSobrenome(user.sobrenomePrestador);
        setTelefone(user.telefonePrestador);
        setGenero(user.generoPrestador);
-       setCidade(user.cidadePrestador);
-       setDtnascimento(user.dataNascimentoPrestador);
+       setCidade(user.estadoPrestador);
+      // setDtnascimento(user.dataNascimentoPrestador);
        setavalprestador(user.avaliacaoPrestador);
     };
     carregarUsuario();
@@ -163,7 +165,7 @@ export default function Profile() {
                 type="telefone"
                 value={telefone}
               ></TextInput>
-
+{/*
               <Text style={styles.Label}>Data de Nascimento</Text>
               <TextInput
                 style={styles.input}
@@ -171,7 +173,7 @@ export default function Profile() {
                 type="dtnascimento"
                 value={dataFormatada}
               ></TextInput>
-
+*/}
               <Text style={styles.Label}>E-mail</Text>
               <TextInput
                 style={styles.input}

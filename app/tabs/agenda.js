@@ -12,7 +12,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-
+import { getUserId } from "../../services/Id.js";
 import styles from "../../styles/AgendaStyles.js";
 
 export default function Agenda() {
@@ -65,6 +65,7 @@ export default function Agenda() {
       </Pressable>
     );
   };
+
 
   return (
     <SafeAreaProvider>
@@ -135,7 +136,7 @@ export default function Agenda() {
           </View>
 
           <View style={styles.containerButton}>
-            <Pressable style={styles.BtnSalvar}>
+            <Pressable style={styles.BtnSalvar} >
               <Text style={styles.Subtitle}>SALVAR</Text>
             </Pressable>
           </View>

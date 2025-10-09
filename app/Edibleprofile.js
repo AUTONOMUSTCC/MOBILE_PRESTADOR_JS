@@ -10,26 +10,25 @@ import {
 } from "react-native";
 import Arrowicon from "../assets/vectors/Arrowicon.jsx";
 import api from "../services/api.js";
+import { getUserId } from "../services/Id.js";
 import styles from "../styles/EdibleprofileStyles.js";
 //SVG's
-import { Link, router } from "expo-router";
-
-//CONST UNIVERSAL
-const id = 3;
+import { Link , router} from "expo-router";
 
 //CONST GET PRESTADOR -> DADOS ANTES DE ATUALIXZAR
 const getPrestadorById = async (id) => {
   try {
     const response = await api("/prestador");
-    const prestadores = response.data; // pega os dados da resposta
+    const prestadores = response.data; // pega apenas os dados da resposta
     const user = prestadores.find((prestador) => prestador.idPrestador === id);
     return user;
-    //para cada valor de input
   } catch (error) {
     console.error("Erro ao buscar prestador:", error);
     return null;
   }
 };
+
+let id;
 
 export default function Edibleprofile() {
   const [value, setValue] = React.useState("");
@@ -40,23 +39,28 @@ export default function Edibleprofile() {
   const [sobrenome, setSobrenome] = React.useState("");
   const [telefone, setTelefone] = React.useState("");
   const [genero, setGenero] = React.useState("");
-  const [cidade, setCidade] = React.useState("");
+  const [estado, setEstado] = React.useState("");
   const [avalprestador, setavalprestador] = React.useState("");
   const [senha, setsenha] = React.useState("");
 
   //const dataFormatada = new Date(dtnascimento).toISOString().slice(0, 10);
   //Const CHANGE INFORMAÇÕES -> ENVIAR PARA O PUTT
 
+  //método que vai deletar o prestador 
   const deleteProfile = async (id) => {
-    Alert.alert("Por favor, preencha todos os dados");
     try {
-      delecao = await api.delete("/prestador", id);
+      const userDelete = {
+        idPrestador: id
+      }
+      const delecao = await api.delete("/Prestador", userDelete );
       router.push("../main");
     } catch (error) {
       console.error(error);
     }
   };
 
+
+  //Método que altera os dados do prestador 
   const changeProfileData = async (id) => {
     if (
       !email ||
@@ -64,8 +68,7 @@ export default function Edibleprofile() {
       !sobrenome ||
       !telefone ||
       !genero ||
-      !cidade ||
-      !dtnascimento
+      !estado 
     ) {
       Alert.alert("Por favor, preencha todos os dados");
       return null;
@@ -78,17 +81,18 @@ export default function Edibleprofile() {
         sobrenomePrestador: sobrenome,
         telefonePrestador: telefone,
         generoPrestador: genero,
-        cidadePrestador: cidade,
+        estadoPrestador: estado,
         avaliacaoPrestador: avalprestador,
         senhaPrestador: senha,
       };
-      request = await api.put("/prestador", changes);
+      const request = await api.put("/Prestador", changes);
+      router.push("/tabs/profile");
       console.log("olhar o banco");
     } catch (error) {
       console.error("erro ao enviar dados atualizados:", error);
       Alert.alert(
         "Erro ao atualizar informações!",
-        " tente novamente mais tarde"
+        "tente novamente mais tarde"
       );
       return null;
     }
@@ -98,13 +102,14 @@ export default function Edibleprofile() {
 
   useEffect(() => {
     const carregarUsuario = async () => {
+      id = await getUserId();
       const user = await getPrestadorById(id); // aqui você passa o id desejado
       setEmail(user.emailPrestador);
       setNome(user.nomePrestador);
       setSobrenome(user.sobrenomePrestador);
       setTelefone(user.telefonePrestador);
       setGenero(user.generoPrestador);
-      setCidade(user.cidadePrestador);
+      setEstado(user.estadoPrestador);
       setavalprestador(user.avaliacaoPrestador);
       setsenha(user.senhaPrestador);
     };
@@ -187,13 +192,13 @@ export default function Edibleprofile() {
                 onChangeText={setEmail}
               ></TextInput>
 
-              <Text style={styles.Label}>Cidade</Text>
+              <Text style={styles.Label}>Estado</Text>
               <TextInput
                 style={styles.input}
                 editable={true}
-                type="cidade"
-                value={cidade}
-                onChangeText={setCidade}
+                type="estado"
+                value={estado}
+                onChangeText={setEstado}
               ></TextInput>
 
               <View style={styles.viewcontainerbutton}>
