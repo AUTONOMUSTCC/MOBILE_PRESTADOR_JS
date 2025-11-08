@@ -1,27 +1,123 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useRouter, router} from "expo-router";
 import { useState } from "react";
-import { Image, Pressable, ScrollView, StatusBar, Text, TouchableOpacity, View } from "react-native";
-import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+  Alert
+} from "react-native";
+import {
+  SafeAreaProvider,
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import Category from "../../componentes/Category.jsx";
 import Specialty from "../../componentes/specialty.jsx";
 import styles from "../../styles/AnunciosCreation.js";
 
+import {
+  setCategoria,
+  setEspecialidade,
+} from "../../services/Addcreation.js";
+
 const caracther = require("../../assets/images/CaractherCreateImage.png");
 
 const categorias = [
-  { nome: "Tecnologia e TI", especialidades: ["Segurança da informação", "Configuração de redes ", "Suporte a hardware", "Documentação de Projetos", "Suporte a software"] },
-  { nome: "Saúde e Bem-Estar", especialidades: ["Nutrição", "Fisioterapia", "Medicina", "Enfermagem", "Psicologia"] },
-  { nome: "Construção e Reformas", especialidades: ["Pintura", "Alvenaria", "Elétrica", "Hidráulica", "Reformas"] },
-  { nome: "Serviços Domésticos e Limpeza", especialidades: ["Limpeza", "Passadoria", "Organização", "Cozinha", "Jardinagem"] },
-  { nome: "Reparos e Instalações", especialidades: ["Instalação elétrica", "Reparos hidráulicos", "Marcenaria", "Montagem de móveis", "Consertos gerais"] },
+  {
+    nome: "Tecnologia e TI",
+    especialidades: [
+      "Segurança da informação",
+      "Configuração de redes ",
+      "Suporte a hardware",
+      "Documentação de Projetos",
+      "Suporte a software",
+    ],
+  },
+  {
+    nome: "Saúde e Bem-Estar",
+    especialidades: [
+      "Nutrição",
+      "Fisioterapia",
+      "Medicina",
+      "Enfermagem",
+      "Psicologia",
+    ],
+  },
+  {
+    nome: "Construção e Reformas",
+    especialidades: [
+      "Pintura",
+      "Alvenaria",
+      "Elétrica",
+      "Hidráulica",
+      "Reformas",
+    ],
+  },
+  {
+    nome: "Serviços Domésticos e Limpeza",
+    especialidades: [
+      "Limpeza",
+      "Passadoria",
+      "Organização",
+      "Cozinha",
+      "Jardinagem",
+    ],
+  },
+  {
+    nome: "Reparos e Instalações",
+    especialidades: [
+      "Instalação elétrica",
+      "Reparos hidráulicos",
+      "Marcenaria",
+      "Montagem de móveis",
+      "Consertos gerais",
+    ],
+  },
 ];
 
+ 
+
 export default function Anuncios() {
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState(categorias[0]); // primeira categoria já ativa
+  // começa com a primeira categoria já ativa
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState(categorias[0].nome);
   const [especialidadesSelecionadas, setEspecialidadesSelecionadas] = useState([]);
   const insets = useSafeAreaInsets();
   const router = useRouter();
+
+  const EnviarDados = async () => {
+
+    if (especialidadesSelecionadas.length === 0) {
+    Alert.alert("Selecione pelo menos uma especialidade antes de continuar.");
+    return;}
+    try {
+      await AsyncStorage.setItem("@categoria", categoriaSelecionada);
+      await AsyncStorage.setItem(
+        "@especialidades",
+        JSON.stringify(especialidadesSelecionadas)
+      );
+      console.log("Categoria e especialidades salvas com sucesso!");
+      router.push("../CreateAdd/description");
+    } catch (error) {
+      console.error("Erro ao salvar dados no AsyncStorage:", error);
+    }
+  };
+
+  const handleSelecionarCategoria = (categoriaNome) => {
+    if (categoriaSelecionada === categoriaNome) {
+      // deseleciona se clicar na mesma
+      setCategoriaSelecionada(null);
+      setEspecialidadesSelecionadas([]);
+    } else {
+      setCategoriaSelecionada(categoriaNome);
+      setEspecialidadesSelecionadas([]);
+    }
+  };
 
   return (
     <SafeAreaProvider>
@@ -42,14 +138,17 @@ export default function Anuncios() {
               Para criar seu anúncio, responda algumas questões
             </Text>
           </View>
+
           <View style={styles.SubtitleContainer}>
             <Text style={styles.Subtitle}>
               Não se preocupe, todas as informações poderão ser alteradas futuramente
             </Text>
           </View>
+
           <View style={styles.caracterIcon}>
             <Image source={caracther} />
           </View>
+
           <View style={styles.ContainerQuestion}>
             <Text style={styles.TxtQuestion}>
               Que tipo de trabalho você está aqui para fazer?
@@ -63,27 +162,41 @@ export default function Anuncios() {
               <View style={styles.Options}>
                 <Category
                   categorias={categorias}
-                  onSelecionar={(categoriaObj) => {
-                    setCategoriaSelecionada(categoriaObj);
-                    setEspecialidadesSelecionadas([]); // reset ao mudar categoria
-                  }}
+                  categoriaSelecionada={categoriaSelecionada}
+                  onSelecionar={(categoriaObj) =>
+                    handleSelecionarCategoria(categoriaObj.nome)
+                  }
                 />
               </View>
             </View>
 
             {/* Seleção de especialidades */}
-            <View style={styles.Specialties}>
-              <Text style={styles.instructionLabel}>Selecione até 3 especialidades</Text>
-              <View style={styles.Options}>
-                <Specialty
-                  categoriaObj={categoriaSelecionada}
-                  onSelecionar={setEspecialidadesSelecionadas}
-                />
+            {categoriaSelecionada && (
+              <View style={styles.Specialties}>
+                <Text style={styles.instructionLabel}>
+                  Selecione até 3 especialidades
+                </Text>
+                <View style={styles.Options}>
+                  <Specialty
+                    categoriaObj={categorias.find(
+                      (c) => c.nome === categoriaSelecionada
+                    )}
+                    onSelecionar={setEspecialidadesSelecionadas}
+                  />
+                </View>
               </View>
-            </View>
+            )}
           </View>
+
           <View style={styles.BtnContainer}>
-            <Pressable style={styles.btn} onPress={() => router.push('../CreateAdd/description')} ><Text style={styles.BtnText}>Próximo</Text></Pressable>
+            <Pressable
+              style={styles.btn}
+              onPress={() =>
+                EnviarDados()
+              }
+            >
+              <Text style={styles.BtnText}>Próximo</Text>
+            </Pressable>
           </View>
         </ScrollView>
       </SafeAreaView>

@@ -17,7 +17,7 @@ export default StyleSheet.create({
     height: height * 0.05,
     alignItems: "center",
     display: "flex",
-    marginTop: 10,
+    marginTop: 0,
     marginLeft: 25,
     alignContent: "flex-start",
   },
@@ -36,7 +36,7 @@ export default StyleSheet.create({
     height: height * 0.15,
     justifyContent: "center",
     alignContent: "flex-start",
-    marginTop: 20,
+    marginTop: 0,
     paddingLeft: 10,
   },
   TitleText: {
@@ -115,7 +115,6 @@ export default StyleSheet.create({
   },
 
   //CHECKBOXES COM OPÇÃO DE MODO DE TRABALHO
-  
   Modecontainer: {
     width: width * 0.85,
     height: height * 0.15,
@@ -139,9 +138,11 @@ export default StyleSheet.create({
     marginRight: 8,
     marginTop: 5,
   },
+  
   ViewCheckSquare: {
-    width: 22,
-    height: 22,
+    width: 20,
+    height: 20,
+    borderRadius: 4,
     backgroundColor: "#A0CEE1",
   },
 

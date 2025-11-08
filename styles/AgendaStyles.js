@@ -150,5 +150,6 @@ export default StyleSheet.create({
     backgroundColor: "#A0CEE1",
     justifyContent: "center",
     alignItems: "center",
-  }
+  },
+
 });

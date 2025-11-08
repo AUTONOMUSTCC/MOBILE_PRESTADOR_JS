@@ -1,6 +1,7 @@
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useRouter, router } from "expo-router";
+import { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   FlatList,
   Modal,
@@ -15,6 +16,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
+import { setQualities } from "../../services/Addcreation.js";
 import styles from "../../styles/StylesHighLigths.js";
 
 const Card = ({ text }) => {
@@ -25,25 +27,52 @@ const Card = ({ text }) => {
     </View>
   );
 };
-
+/*
+const salvarDestaques = async (topic) => {
+  setQualities(topic);
+  console.log("Qualidade adcionada:", topic);
+  router.push("./ServiceMode");
+};
+*/
 export default function HighLigths() {
+  let [desabilitado, setdesabilitado] = useState(false);
+
   const [modalVisible, setModalVisible] = useState(false);
   const [topic, setTopic] = useState([]);
   const [inputText, setInputText] = useState("");
   const insets = useSafeAreaInsets();
   const router = useRouter();
 
+  useEffect(() => {
+    if (topic.length >= 5) {
+      setdesabilitado(true);
+    } else {
+      setdesabilitado(false);
+    }
+  }, [topic]);
+
   const handleAddExperience = () => {
     if (inputText.trim() !== "") {
       setTopic((prev) => {
         const updated = [...prev, inputText.trim()];
-        console.log("Experiência adicionada:", updated);
+        console.log("Qualidade adicionada:", updated);
         return updated;
       });
       setInputText("");
       setModalVisible(false);
     }
   };
+
+  const SalvarDados = async() => {
+     try{
+      await AsyncStorage.setItem("qualidade", JSON.stringify(topic));
+      console.log("Qualidade salva com sucesso");
+      router.push("./ServiceMode");
+    }
+    catch(error) {
+      console.error("Erro ao salvar dados no AsyncStorage:", error);
+    }
+  }
 
   return (
     <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
@@ -65,17 +94,29 @@ export default function HighLigths() {
 
       <View style={styles.SubTitleContainer}>
         <Text style={styles.SubTitleText}>
-         Este é o momento de mostrar ao cliente o que torna seu trabalho único. Escreva sobre suas qualidades, formas de atendimento ou resultados que você costuma entregar e que o tornam singular.
+          Este é o momento de mostrar ao cliente o que torna seu trabalho único.
+          Escreva sobre suas qualidades, formas de atendimento ou resultados que
+          você costuma entregar e que o tornam singular.
         </Text>
       </View>
 
       <View style={styles.ExperienceContainer}>
         <Pressable
-          style={styles.AddExperience}
+          disabled={desabilitado}
           onPress={() => setModalVisible(true)}
+          style={[
+            styles.AddExperience,
+            desabilitado && { backgroundColor: "#d3d3d3" }, // cinza quando desabilitado
+          ]}
         >
-          <Entypo name="plus" size={20} color="black" />
-          <Text style={styles.BtnTextAdd}>Adicionar item</Text>
+          <Entypo
+            name="plus"
+            size={20}
+            color={desabilitado ? "#888" : "black"}
+          />
+          <Text style={[styles.BtnTextAdd, desabilitado && { color: "#888" }]}>
+            {desabilitado ? "Limite atingido" : "Adicionar item"}
+          </Text>
         </Pressable>
       </View>
 
@@ -89,10 +130,10 @@ export default function HighLigths() {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.ModalHeader}>
-            <Text style={styles.modalTitle}>Adicione um item</Text>
-            <TouchableOpacity onPress={() => setModalVisible(false)}>
-              <AntDesign name="close" size={24} color="black" />
-            </TouchableOpacity>
+              <Text style={styles.modalTitle}>Adicione um item</Text>
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <AntDesign name="close" size={24} color="black" />
+              </TouchableOpacity>
             </View>
             <Text style={styles.modalSubtitle}>
               ATENÇÃO! Adicione um item por vez
@@ -100,7 +141,7 @@ export default function HighLigths() {
 
             <TextInput
               style={styles.input}
-              placeholder="liste suas principais habilidades e o que te torna diferente dos demais"
+              placeholder="liste os principais destaques da sua carreira e o que te torna diferente dos demais"
               multiline
               numberOfLines={5}
               maxLength={150}
@@ -126,10 +167,7 @@ export default function HighLigths() {
       </View>
 
       <View style={styles.BtnContainer}>
-        <Pressable
-          style={styles.btn}
-          onPress={() => router.push("../CreateAdd/ServiceMode")}
-        >
+        <Pressable style={styles.btn} onPress={() => SalvarDados()}>
           <Text style={styles.BtnText}>Próximo</Text>
         </Pressable>
       </View>

@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useRouter, router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import {
   Pressable,
@@ -15,11 +16,31 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import styles from "../../styles/StylesDescription.js";
+import { setDescription } from "../../services/Addcreation.js";
 
+/* Agr com async storage, ^N vou usar mais
+const SalvarDescricao =  async(descr) => {
+  setDescription(descr);
+  console.log('descrição enviada');
+  router.push('../CreateAdd/Workexperiences');
+}
+*/
 export default function description() {
-  const [description, setdescription] = React.useState("");
+  const [descr, setdescription] = React.useState("");
   const insets = useSafeAreaInsets();
   const router = useRouter();
+
+  const EnviarDados = async() =>{
+    try{
+      await AsyncStorage.setItem("@descricao", descr);
+      console.log("Descrição salva com sucesso!");
+      router.push('../CreateAdd/Workexperiences');
+    }
+    catch(error) {
+      console.error("Erro ao salvar dados no AsyncStorage:", error);
+    }
+  }
+
   return (
     <SafeAreaProvider>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
@@ -46,7 +67,7 @@ export default function description() {
             multiline
             numberOfLines={10}
             maxLength={500}
-            value={description}
+            value={descr}
             placeholder="Inclua sua área de atuação, especialidades e como 
             você costuma resolver os problemas ou atender seus clientes"
             autoCapitalize="none"
@@ -54,7 +75,9 @@ export default function description() {
           </TextInput>
         </View>
         <View style={styles.BtnContainer}>
-          <Pressable style={styles.btn} onPress={() => router.push('../CreateAdd/Workexperiences')} ><Text style={styles.BtnText}>Próximo</Text></Pressable>
+          <Pressable style={styles.btn} onPress={() => EnviarDados() } >
+            <Text style={styles.BtnText}>Próximo</Text>
+          </Pressable>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>

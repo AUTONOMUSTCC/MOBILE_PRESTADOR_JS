@@ -1,9 +1,10 @@
-import { Text, View, Image, Pressable } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 
 // IMPORTS
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link } from "expo-router";
 import styles from "../styles/loadingStyles";
+
 //images
 import logo from "../assets/images/logoprestador.png";
 
@@ -18,7 +19,7 @@ export default function Index() {
         <Text style={styles.text}>Sua ponte entre demanda e solução</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Link href="../introduction" asChild>
+        <Link href="./Beginning/introduction" asChild>
           <Pressable style={styles.button}>
             <FontAwesome
               name="arrow-right"

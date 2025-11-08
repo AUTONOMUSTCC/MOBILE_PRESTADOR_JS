@@ -65,7 +65,7 @@ export default StyleSheet.create({
   },
   /* Corpo da tela */
   body: {
-    height: heightTotal * 0.9,
+    height: heightTotal * 1,
     width: widthTotal,
     backgroundColor: "#fff",
     borderTopLeftRadius: 35,

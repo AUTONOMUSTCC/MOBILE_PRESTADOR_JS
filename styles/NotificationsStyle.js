@@ -6,7 +6,9 @@ export default StyleSheet.create({
   //GERAL
   container: {
     display: 'flex',
-    flex: 1,
+    //flex: 1,
+        backgroundColor: '#fff',
+
   },
 
   scroll: {
@@ -15,6 +17,7 @@ export default StyleSheet.create({
     paddingLeft: 20,
     backgroundColor: '#fff',
     marginBottom: "10%",
+   marginLeft: '5%'
   },
   header: {
     flexDirection: "row",
@@ -59,5 +62,19 @@ export default StyleSheet.create({
   mensagem: {
     fontSize: 12,
     color: "#777",
+  },
+  button: {
+    width: 80,
+    height: 20,
+    marginLeft: 20,
+    alignItems: "center",
+    backgroundColor:"#A0CEE1",
+    justifyContent: "center",
+    borderRadius: 20,
+    //borderColor: "#000000",
+    //borderWidth: 1,
+  },
+  buttontext: {
+    fontSize: 14,
   },
 });

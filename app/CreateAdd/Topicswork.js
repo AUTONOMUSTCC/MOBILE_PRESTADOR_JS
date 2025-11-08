@@ -1,6 +1,7 @@
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import { useState } from "react";
+import { router, useRouter } from "expo-router";
+import { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   FlatList,
   Modal,
@@ -10,12 +11,14 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Alert
 } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import styles from "../../styles/StylesTopics.js";
+import { setAbilitys } from "../../services/Addcreation.js";
 
 const Card = ({ text }) => {
   return (
@@ -25,25 +28,54 @@ const Card = ({ text }) => {
     </View>
   );
 };
-
+/*
+const salvarHabilidade = async(topic) =>{
+    setAbilitys(topic);
+    console.log("habilidades adicionadas:", topic);
+    router.push('./HighLigths');
+}*/
+//TELA DE HABILIDADES 
 export default function Topicswork() {
+  let [desabilitado, setdesabilitado] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [topic, setTopic] = useState([]);
   const [inputText, setInputText] = useState("");
   const insets = useSafeAreaInsets();
   const router = useRouter();
 
+  useEffect(() => {
+    if (topic.length >= 5) {
+      setdesabilitado(true);
+    } else {
+      setdesabilitado(false);
+    }
+  }, [topic]);
+
   const handleAddExperience = () => {
     if (inputText.trim() !== "") {
       setTopic((prev) => {
         const updated = [...prev, inputText.trim()];
-        console.log("Experiência adicionada:", updated);
+        console.log("habilidades adicionadas:", updated);
         return updated;
       });
       setInputText("");
       setModalVisible(false);
+    } else {
+      Alert.alert("Atenção", "Digite algo antes de adicionar.");
     }
   };
+
+  const SalvarDados = async() => {
+    try{
+      await AsyncStorage.setItem("habilidades", JSON.stringify(topic));
+      console.log("Habilidade salva com sucesso");
+      router.push('./HighLigths');
+
+    }
+    catch(error) {
+      console.error("Erro ao salvar dados no AsyncStorage:", error);
+    }
+  }
 
   return (
     <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
@@ -60,7 +92,7 @@ export default function Topicswork() {
       <View style={styles.TitleContainer}>
         <Text style={styles.TitleText}>
           Escreva sobre o que você faz em tópicos para facilitar a compreensão
-          do cliente{" "}
+          do cliente
         </Text>
       </View>
 
@@ -73,12 +105,23 @@ export default function Topicswork() {
       </View>
 
       <View style={styles.ExperienceContainer}>
-        <Pressable
-          style={styles.AddExperience}
+       <Pressable
+          disabled={desabilitado}
           onPress={() => setModalVisible(true)}
+          style={[
+            styles.AddExperience,
+            desabilitado && { backgroundColor: "#d3d3d3" }, // cinza quando desabilitado
+          ]}
         >
-          <Entypo name="plus" size={20} color="black" />
-          <Text style={styles.BtnTextAdd}>Adicionar item</Text>
+          <Entypo name="plus" size={20} color={desabilitado ? "#888" : "black"} />
+          <Text
+            style={[
+              styles.BtnTextAdd,
+              desabilitado && { color: "#888" },
+            ]}
+          >
+            {desabilitado ? "Limite atingido" : "Adicionar item"}
+          </Text>
         </Pressable>
       </View>
 
@@ -131,7 +174,7 @@ export default function Topicswork() {
       <View style={styles.BtnContainer}>
         <Pressable
           style={styles.btn}
-          onPress={() => router.push("../CreateAdd/HighLigths")}
+          onPress={() => SalvarDados()}
         >
           <Text style={styles.BtnText}>Próximo</Text>
         </Pressable>

@@ -1,7 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 const widthTotal = Dimensions.get("screen").width;
 const heightTotal = Dimensions.get("screen").height;
-
 export default StyleSheet.create({
   container: {
     backgroundColor: "#fff",
@@ -10,14 +9,8 @@ export default StyleSheet.create({
     flex: 1,
     display: "flex",
   },
-
   //VIEW 2
-
-  personagem: {
-    width: 240,
-    height: 198,
-  },
-
+  personagem: { width: 240, height: 198 },
   view2container: {
     display: "flex",
     alignContent: "center",
@@ -26,9 +19,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
   //VIEW 3
-
   view3container: {
     display: "flex",
     alignContent: "center",
@@ -65,12 +56,11 @@ export default StyleSheet.create({
     textAlign: "justify",
     justifyContent: "center",
   },
-
   //BOTAO
   buttonContainer: {
     width: widthTotal,
     height: heightTotal * 0.1,
-    //flexDirection: "column",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
@@ -90,21 +80,12 @@ export default StyleSheet.create({
     fontWeight: "bold",
   },
   //RECUPERAR SENHA
-
-  forgotContainer: {
-    width: widthTotal * 0.8,
-    alignItems: "flex-end",
-  },
-
+  forgotContainer: { width: widthTotal * 0.8, alignItems: "flex-end" },
   forgotBTN: {
     alignItems: "flex-end",
     justifyContent: "flex-end",
     alignContent: "center",
     padding: widthTotal * 0.02,
   },
-  forgot: {
-    color: "#94B9C8",
-    textAlign: "end",
-    fontSize: 10,
-  },
+  forgot: { color: "#94B9C8", textAlign: "end", fontSize: 10 },
 });

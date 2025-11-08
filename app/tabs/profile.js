@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Link } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
@@ -12,7 +13,6 @@ import {
 } from "react-native";
 import { Rating } from "react-native-ratings";
 import api from "../../services/api.js";
-import { getUserId } from "../../services/Id.js";
 import styles from "../../styles/ProfileStyles.js";
 
 //IMAGES
@@ -26,18 +26,6 @@ import Settingsicon from "../../assets/vectors/SettingsIcon.jsx";
 //consts - variáveis
 
 //consts - métodos
-const getPrestadorById = async (id) => {
-  try {
-    const response = await api('/prestador');
-    const prestadores = response.data; // pega os dados da resposta
-    const user = prestadores.find((prestador) => prestador.idPrestador === id);
-    return user;
-    //para cada valor de input
-  } catch (error) {
-    console.error("Erro ao buscar prestador:", error);
-    return null;
-  }
-};
 
 
 
@@ -54,15 +42,13 @@ export default function Profile() {
  // const [dtnascimento, setDtnascimento] = React.useState("");
   const [aval, setavalprestador] = React.useState("");
  /* const dataFormatada = dtnascimento.split("T")[0];*/
-  const nomeCompleto = nome + sobrenome;
-
-  let id = 0;
+  const nomeCompleto = nome +" "+sobrenome;
 
 //  PUXANDO DO BANCO
   useEffect(() => {
     const carregarUsuario = async () => {
-      const id =  await getUserId();
-      const user = await getPrestadorById(id); // aqui você passa o id desejado
+      const id = await AsyncStorage.getItem("idUsuario");
+      const user = await getPrestadorById(id); // função com os dados do prestador 
        setEmail(user.emailPrestador);
        setNome(user.nomePrestador);
        setSobrenome(user.sobrenomePrestador);
@@ -74,6 +60,19 @@ export default function Profile() {
     };
     carregarUsuario();
   }, []);
+
+  const getPrestadorById = async(id) => {
+  try {
+    const response = await api.get('/PrestadorFiltro/'+id);
+    const user = response.data; // pega os dados da resposta
+    return user;
+    //para cada valor de input
+  } catch (error) {
+    console.error("Erro ao buscar prestador:", error);
+    return null;
+  }
+};
+
 
   return (
     <View style={styles.container} >
@@ -204,7 +203,7 @@ export default function Profile() {
             <View style={styles.modalOverlay}>
               <View style={styles.modalContent}>
                 <View style={styles.modalContentCabecalho}>
-                  <Link href="/tabs/profile">
+                  <Link href="../tabs/profile">
                     <Arrowicon
                       style={styles.icon}
                       onPress={() => setModalIsOpen(false)}
@@ -213,7 +212,7 @@ export default function Profile() {
                   <Text style={styles.title}>Configurações</Text>
                 </View>
                 <View style={styles.modalContentCorpo}>
-                  <Link href="/Reviews" asChild>
+                  <Link href="../ProfileModal/Reviews" asChild>
                     <Pressable
                       style={styles.button}
                       onPress={() => setModalIsOpen(false)}
@@ -222,7 +221,7 @@ export default function Profile() {
                     </Pressable>
                   </Link>
 
-                  <Link href="/Edibleprofile" asChild>
+                  <Link href="../ProfileModal/Editableprofile" asChild>
                     <Pressable
                       style={styles.button}
                       onPress={() => setModalIsOpen(false)}
@@ -231,7 +230,7 @@ export default function Profile() {
                     </Pressable>
                   </Link>
 
-                  <Link href="/EdiblePassword" asChild>
+                  <Link href="../ProfileModal/EdiblePassword" asChild>
                     <Pressable
                       style={styles.button}
                       onPress={() => setModalIsOpen(false)}
@@ -239,6 +238,16 @@ export default function Profile() {
                       <Text style={styles.text}>Alterar senha</Text>
                     </Pressable>
                   </Link>
+                  
+                  <Link href="../Logged/About" asChild>
+                        <Pressable
+                          style={styles.button}
+                          onPress={() => setModalIsOpen(false)}
+                        >
+                          <Text style={styles.text}>Visualizar seu perfil</Text>
+                        </Pressable>
+                  </Link>
+
                 </View>
               </View>
             </View>

@@ -1,7 +1,9 @@
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
+  Alert,
   FlatList,
   Modal,
   Pressable,
@@ -25,34 +27,73 @@ const Card = ({ text }) => {
     </View>
   );
 };
+/*
+const EnviarDados = async (topic, selectedmode) => {
+  if (topic.length === 0 || !selectedmode) {
+    Alert.alert("Preencha todos os campos para a criação");
+    return;
+  }
+  setAbordagem(topic);
+  setServicemode(selectedmode);
+  console.log(topic, selectedmode);
+  router.push("./ValueperHour");
+};
+*/
 
 export default function ServiceMode() {
-  const [selectedmode, setmode] = useState();
+  const [desabilitado, setdesabilitado] = useState(false);
+  const [selectedmode, setSelectedMode] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [topic, setTopic] = useState([]);
   const [inputText, setInputText] = useState("");
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const [remoto, setRemoto] = useState(false);
-  const [hibrido, sethibrido] = useState(false);
-  const [presencial, setpresencial] = useState(false);
-
 
   const handleAddExperience = () => {
     if (inputText.trim() !== "") {
-      setTopic((prev) => {
-        const updated = [...prev, inputText.trim()];
-        console.log("Experiência adicionada:", updated);
-        return updated;
-      });
+      setTopic((prev) => [...prev, inputText.trim()]);
       setInputText("");
       setModalVisible(false);
     }
   };
 
+  useEffect(() => {
+    setdesabilitado(topic.length >= 5);
+  }, [topic]);
+
+  const handleSelectMode = (mode) => {
+    setSelectedMode((prev) => (prev === mode ? null : mode));
+  };
+
+  const SalvarDados = async () => {
+    if (selectedmode === null) {
+      Alert.alert("Selecione um modo");
+      return;
+    }
+    if (topic.length === 0) {
+      Alert.alert("adicione pelo menos uma abordagem");
+      return;
+    }
+    try {
+      await AsyncStorage.setItem("abordagem", JSON.stringify(topic));
+      await AsyncStorage.setItem("atendimento", selectedmode);
+      console.log("Abordagem e atendimento salva com sucesso");
+      router.push("./ValueperHour");
+    } catch (error) {
+      console.error("Erro ao salvar dados no AsyncStorage:", error);
+    }
+  };
+
   return (
-    <SafeAreaView style={[styles.container, { paddingTop: insets.top , paddingBottom: insets.bottom}]}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        { paddingTop: insets.top, paddingBottom: insets.bottom },
+      ]}
+    >
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+
+      {/* Cabeçalho */}
       <View style={styles.header}>
         <View style={styles.icon}>
           <TouchableOpacity onPress={() => router.back()}>
@@ -62,6 +103,7 @@ export default function ServiceMode() {
         <Text style={styles.headerTitle}>Voltar</Text>
       </View>
 
+      {/* Título */}
       <View style={styles.TitleContainer}>
         <Text style={styles.TitleText}>
           Fale sobre sua abordagem de trabalho, métodos para alcançar o objetivo
@@ -69,6 +111,7 @@ export default function ServiceMode() {
         </Text>
       </View>
 
+      {/* Subtítulo */}
       <View style={styles.SubTitleContainer}>
         <Text style={styles.SubTitleText}>
           Aqui você deve escolher uma forma de atendimento (presencial, online,
@@ -79,44 +122,42 @@ export default function ServiceMode() {
         </Text>
       </View>
 
+      {/* Forma de atendimento */}
       <View style={styles.Modecontainer}>
         <Text style={styles.TitleText}>Forma de atendimento</Text>
-        <TouchableOpacity
-          style={styles.stylesToucheable}
-          onPress={() => setRemoto(!remoto)}
-        >
-          <View style={styles.ViewCheck}>
-            {remoto && <View style={styles.ViewCheckSquare} />}
-          </View>
-          <Text>Remoto</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.stylesToucheable}
-          onPress={() => sethibrido(!hibrido)}
-        >
-          <View style={styles.ViewCheck}>
-            {hibrido && <View style={styles.ViewCheckSquare} />}
-          </View>
-          <Text>Hibrido</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.stylesToucheable}
-          onPress={() => setpresencial(!presencial)}
-        >
-          <View style={styles.ViewCheck}>
-            {presencial && <View style={styles.ViewCheckSquare} />}
-          </View>
-          <Text>Presencial</Text>
-        </TouchableOpacity>
+
+        {["Remoto", "Híbrido", "Presencial"].map((mode) => (
+          <TouchableOpacity
+            key={mode}
+            style={styles.stylesToucheable}
+            onPress={() => handleSelectMode(mode)}
+          >
+            <View style={styles.ViewCheck}>
+              {selectedmode === mode && <View style={styles.ViewCheckSquare} />}
+            </View>
+            <Text>{mode}</Text>
+          </TouchableOpacity>
+        ))}
       </View>
 
+      {/* Botão para adicionar abordagem */}
       <View style={styles.ExperienceContainer}>
         <Pressable
-          style={styles.AddExperience}
+          disabled={desabilitado}
           onPress={() => setModalVisible(true)}
+          style={[
+            styles.AddExperience,
+            desabilitado && { backgroundColor: "#d3d3d3" },
+          ]}
         >
-          <Entypo name="plus" size={20} color="black" />
-          <Text style={styles.BtnTextAdd}>Adicionar item</Text>
+          <Entypo
+            name="plus"
+            size={20}
+            color={desabilitado ? "#888" : "black"}
+          />
+          <Text style={[styles.BtnTextAdd, desabilitado && { color: "#888" }]}>
+            {desabilitado ? "Limite atingido" : "Adicionar item"}
+          </Text>
         </Pressable>
       </View>
 
@@ -141,7 +182,7 @@ export default function ServiceMode() {
 
             <TextInput
               style={styles.input}
-              placeholder="liste suas principais habilidades e o que te torna diferente dos demais"
+              placeholder="Liste seu modo de trabalho e sua abordagem que te diferencia dos demais"
               multiline
               numberOfLines={5}
               maxLength={150}
@@ -156,21 +197,18 @@ export default function ServiceMode() {
         </View>
       </Modal>
 
-      {/* Lista de Experiências */}
+      {/* Lista de abordagens */}
       <View style={styles.containeraftermodal}>
         <FlatList
           data={topic}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => <Card text={item} />}
-          contentContainerStyle={styles.containeraftermodal}
         />
       </View>
 
+      {/* Botão Próximo */}
       <View style={styles.BtnContainer}>
-        <Pressable
-          style={styles.btn}
-          onPress={() => router.push("../CreateAdd/ValueperHour")}
-        >
+        <Pressable style={styles.btn} onPress={() => SalvarDados()}>
           <Text style={styles.BtnText}>Próximo</Text>
         </Pressable>
       </View>

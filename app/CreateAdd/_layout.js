@@ -8,6 +8,7 @@ export default function RootLayout() {
       <Stack.Screen name="Topicswork" options={{ headerShown: false }} />
       <Stack.Screen name="HighLigths" options={{ headerShown: false }} />
       <Stack.Screen name="ServiceMode" options={{ headerShown: false }} />
+       <Stack.Screen name="ValueperHour" options={{ headerShown: false }} />
     </Stack>
   );
 }

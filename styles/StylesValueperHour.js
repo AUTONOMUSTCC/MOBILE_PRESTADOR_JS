@@ -17,7 +17,7 @@ export default StyleSheet.create({
     height: height * 0.05,
     alignItems: "center",
     display: "flex",
-    marginTop: 10,
+    marginTop: 0,
     marginLeft: 25,
     alignContent: "flex-start",
   },
@@ -33,11 +33,12 @@ export default StyleSheet.create({
 
   TitleContainer: {
     width: width * 0.9,
-    height: height * 0.15,
+    height: height * 0.12,
     justifyContent: "center",
     alignContent: "flex-start",
     marginTop: 20,
     paddingLeft: 10,
+
   },
   TitleText: {
     color: "#000",
@@ -51,7 +52,7 @@ export default StyleSheet.create({
     height: height * 0.15,
     justifyContent: "center",
     alignContent: "flex-start",
-    paddingLeft: 10,
+    paddingLeft: 10,     
   },
   SubTitleText: {
     width: width * 0.755,
@@ -95,12 +96,12 @@ export default StyleSheet.create({
 
   //Botão de próximo
   BtnContainer: {
-    width: width,
+    width: width ,
     alignItems: "flex-end",
     height: height * 0.1,
     justifyContent: "center",
     paddingRight: "5%",
-    backgroundColor: "#A0CEE1",
+    backgroundColor: "#fff",
   },
   btn: {
     backgroundColor: "#A0CEE1",
@@ -115,16 +116,7 @@ export default StyleSheet.create({
     fontWeight: "500",
   },
 
-  //CHECKBOXES COM OPÇÃO DE MODO DE TRABALHO
-
-  Modecontainer: {
-    width: width * 0.85,
-    height: height * 0.1,
-    marginTop: 5,
-    alignContent: "center",
-    justifyContent: "center",
-    marginBottom: 5,
-  },
+ 
   Viewvaluesinput: {
     flexDirection: "row",
     alignItems: "center",
@@ -135,24 +127,9 @@ export default StyleSheet.create({
     height: 40,
     width: 200,
     marginTop: 10,
+    
   },
 
-  ViewCheck: {
-    height: 24,
-    width: 24,
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: "#333",
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: 8,
-    marginTop: 5,
-  },
-  ViewCheckSquare: {
-    width: 22,
-    height: 22,
-    backgroundColor: "#A0CEE1",
-  },
 
   //Modal
   centeredView: {
@@ -222,7 +199,7 @@ export default StyleSheet.create({
   //Resposta do modal
   containeraftermodal: {
     width: width * 0.9,
-    height: height * 0.3,
+    height: height * 0.25,
     alignItems: "center",
     justifyContent: "flex-start",
   },

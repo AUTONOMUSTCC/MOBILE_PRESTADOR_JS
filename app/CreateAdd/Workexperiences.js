@@ -1,6 +1,7 @@
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { router, useRouter } from "expo-router";
+import { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   FlatList,
   Modal,
@@ -10,13 +11,14 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Alert,
 } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
+import { setExperience } from "../../services/Addcreation.js";
 import styles from "../../styles/StylesExperience.js";
-
 const Card = ({ text }) => {
   return (
     <View style={styles.Containercard}>
@@ -25,8 +27,15 @@ const Card = ({ text }) => {
     </View>
   );
 };
+/*criando anuncio 
+const salvarExperiencia = async (experiencia) => {
+  setExperience(experiencia);
+  console.log("experiencia adicionada", experiencia);
+  router.push("./Topicswork");
+};*/
 
 export default function Workexperiences() {
+  let [desabilitado, setdesabilitado] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [experiencia, setExperiencia] = useState([]);
   const [inputText, setInputText] = useState("");
@@ -44,6 +53,26 @@ export default function Workexperiences() {
       setModalVisible(false);
     }
   };
+
+  useEffect(() => {
+    if (experiencia.length >= 5) {
+      setdesabilitado(true);
+    } else {
+      setdesabilitado(false);
+    }
+  }, [experiencia]);
+
+
+  const EnviarDados = async() =>{
+    try{
+      await AsyncStorage.setItem("@experiencia", JSON.stringify(experiencia));
+      console.log("Experiência salva com sucesso!");
+      router.push("./Topicswork");    
+    }
+    catch(error) {
+      console.error("Erro ao salvar dados no AsyncStorage:", error);
+    }
+  }
 
   return (
     <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
@@ -74,11 +103,17 @@ export default function Workexperiences() {
 
       <View style={styles.ExperienceContainer}>
         <Pressable
-          style={styles.AddExperience}
+          disabled={desabilitado}
+          style={[
+            styles.AddExperience,
+            desabilitado && { backgroundColor: "#d3d3d3" }, // cinza quando desabilitado
+          ]}
           onPress={() => setModalVisible(true)}
         >
           <Entypo name="plus" size={20} color="black" />
-          <Text style={styles.BtnTextAdd}>Adicionar experiência</Text>
+          <Text style={[styles.BtnTextAdd, desabilitado && { color: "#888" }]}>
+            {desabilitado ? "Limite atingido" : "Adicionar item"}
+          </Text>
         </Pressable>
       </View>
 
@@ -96,11 +131,7 @@ export default function Workexperiences() {
                 Adicione uma experiência de trabalho
               </Text>
               <TouchableOpacity onPress={() => setModalVisible(false)}>
-                <AntDesign
-                  name="close"
-                  size={22}
-                  color="black"
-                />
+                <AntDesign name="close" size={22} color="black" />
               </TouchableOpacity>
             </View>
 
@@ -138,7 +169,7 @@ export default function Workexperiences() {
       <View style={styles.BtnContainer}>
         <Pressable
           style={styles.btn}
-          onPress={() => router.push("../CreateAdd/Topicswork")}
+          onPress={() => EnviarDados()}
         >
           <Text style={styles.BtnText}>Próximo</Text>
         </Pressable>
@@ -146,3 +177,4 @@ export default function Workexperiences() {
     </SafeAreaView>
   );
 }
+/*"../CreateAdd/Topicswork"*/

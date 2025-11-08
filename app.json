@@ -4,12 +4,12 @@
     "slug": "mobilePrestador",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "../assets/images/logoprestador.png",
+    "icon": "./assets/images/logoprestador.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "scheme": "mobilePrestador",
     "splash": {
-      "image": "../assets/images/logoprestador.png",
+      "image": "./assets/images/logoprestador.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,7 +18,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/CharacterLogin.png",
+        "foregroundImage": "./assets/images/Blur.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true

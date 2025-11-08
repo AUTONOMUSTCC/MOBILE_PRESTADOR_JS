@@ -28,9 +28,8 @@ const HomeScreen = () => {
   const router = useRouter();
   
   const onPress = () => {
-   router.push('/notifications');
+   router.push('../Logged/notifications');
   };
-
 
   return (
     <ScrollView
@@ -91,8 +90,9 @@ const HomeScreen = () => {
 
         {/*SEGUNDO CARROUSEL  */}
         <View style={styles.CarouselServicos}>
-          <Text style={styles.text}>Serviços mais populares</Text>
-          <CarrouselPop />
+          <Pressable onPress={ () => router.push("../Logged/./Professionals") }>
+            <CarrouselPop />
+          </Pressable>
         </View>
         {/*TERCEIRO CARROUSEL  */}
         <View style={styles.CarouselCategorias}>

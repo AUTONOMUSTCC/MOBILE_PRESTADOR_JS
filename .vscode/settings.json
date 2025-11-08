@@ -3,5 +3,11 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
-  }
+  },
+  "vscode-pets.petSize": "small",
+  "vscode-pets.petColor": "brown",
+  "vscode-pets.theme": "castle",
+  "vscode-pets.position": "explorer",
+  "vscode-pets.throwBallWithMouse": true,
+  "vscode-pets.disableEffects": false
 }

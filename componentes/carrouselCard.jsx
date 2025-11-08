@@ -11,7 +11,7 @@ import {
 
 import Agendaicon from "../assets/vectors/Agendaicon";
 import Searchicon2 from "../assets/vectors/Searchicon2";
-import CreateAdicon from "../assets/vectors/CreateAdicon";
+import Work from "../assets/vectors/Work";
 // CONSTANTES
 const { width } = Dimensions.get("screen");
 const heightTotal = Dimensions.get("screen").height;
@@ -32,7 +32,7 @@ const data = [
     screen: "chat",
   },
   {
-    image: <CreateAdicon />,
+    image: <Work />,
     id: "3",
     title: "Anunciar seu serviço ",
     description: "Divulgue seu trabalho por meio de um anuncio",
