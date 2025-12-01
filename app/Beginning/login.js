@@ -17,6 +17,11 @@ export default function Login() {
   const [senhaprest, setSenha] = React.useState("");
   const router = useRouter();
 
+  const FANTASMA = () =>{
+    setEmail("rubens@gmail.com");
+    setSenha("senha123");
+  }
+
   const handleLogin = async () => {
     if (emailprest === "" || senhaprest === "") {
       Alert.alert("Preencha todos os campos para realizar o login!");
@@ -113,6 +118,12 @@ export default function Login() {
           onPress={() => router.push("/forgotPassword")}
         >
           <Text style={styles.forgot}>ESQUECI MINHA SENHA</Text>
+        </Pressable>
+        <Pressable
+          style={styles.forgotBTN}
+          onPress={() => FANTASMA()}
+        >
+          <Text style={styles.forgot}></Text>
         </Pressable>
       </View>
       <View style={styles.buttonContainer}>

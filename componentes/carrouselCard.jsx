@@ -8,13 +8,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
+import { router } from "expo-router";
 import Agendaicon from "../assets/vectors/Agendaicon";
 import Searchicon2 from "../assets/vectors/Searchicon2";
 import Work from "../assets/vectors/Work";
 // CONSTANTES
 const { width } = Dimensions.get("screen");
 const heightTotal = Dimensions.get("screen").height;
+const search = "../Logged/Search";
 const data = [
   {
     image: <Agendaicon />,
@@ -29,7 +30,7 @@ const data = [
     id: "2",
     title: "Pesquisa Rápida",
     description: "Encontre rapidamente serviço buscando por categoria",
-    screen: "chat",
+    screen: search ,
   },
   {
     image: <Work />,
@@ -55,8 +56,9 @@ const Carrousel = () => {
       <TouchableOpacity
         style={styles.card}
         activeOpacity={0.8}
-        onPress={() => navigation.navigate(item.screen)}
-      >
+        onPress={() => {if (item.screen.startsWith('.') || item.screen.startsWith('/')) {
+            router.push(item.screen);
+          } else {navigation.navigate(item.screen);}}}      >
         <View style={styles.card}>
           <View style={styles.imageContainer}>{item.image}</View>
 

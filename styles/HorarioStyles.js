@@ -76,7 +76,7 @@ export default StyleSheet.create({
     borderRadius: 5,
   },
   buttonSelected:{
-    backgroundColor: "#C8593D",
+    backgroundColor: "#6093a8ff",
     width: width * 0.095,
     height: heigth * 0.04,
     margin: 1,

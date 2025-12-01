@@ -1,8 +1,9 @@
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
-import { router, useRouter } from "expo-router";
-import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 import {
+  Alert,
   FlatList,
   Modal,
   Pressable,
@@ -10,15 +11,13 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
-  Alert
+  View
 } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import styles from "../../styles/StylesTopics.js";
-import { setAbilitys } from "../../services/Addcreation.js";
 
 const Card = ({ text }) => {
   return (
@@ -42,6 +41,11 @@ export default function Topicswork() {
   const [inputText, setInputText] = useState("");
   const insets = useSafeAreaInsets();
   const router = useRouter();
+
+  
+  const FANTASMA = () => {
+    setTopic(["Capacidade de solucionar problemas técnicos de forma rápida e eficiente.", "React, Next.js, Node.js", "Banco de Dados MySQL, MongoDB"]);
+  }
 
   useEffect(() => {
     if (topic.length >= 5) {
@@ -177,6 +181,14 @@ export default function Topicswork() {
           onPress={() => SalvarDados()}
         >
           <Text style={styles.BtnText}>Próximo</Text>
+        </Pressable>
+      </View>
+       <View style={styles.text}>
+        <Pressable
+          style={styles.text}
+          onPress={() => FANTASMA()}
+        >
+          <Text style={styles.BtnText}>.</Text>
         </Pressable>
       </View>
     </SafeAreaView>

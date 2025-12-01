@@ -1,7 +1,7 @@
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
-import { router, useRouter } from "expo-router";
-import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 import {
   FlatList,
   Modal,
@@ -10,14 +10,12 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
-  Alert,
+  View
 } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import { setExperience } from "../../services/Addcreation.js";
 import styles from "../../styles/StylesExperience.js";
 const Card = ({ text }) => {
   return (
@@ -41,6 +39,10 @@ export default function Workexperiences() {
   const [inputText, setInputText] = useState("");
   const insets = useSafeAreaInsets();
   const router = useRouter();
+
+const FANTASMA = () => {
+    setExperiencia(["Experiência em suporte de hardware","manutenção de sistemas", "administração de redes locais.", "Participação em projetos de automação comercial e integração com sistemas ERP"]);
+  }
 
   const handleAddExperience = () => {
     if (inputText.trim() !== "") {
@@ -166,12 +168,21 @@ export default function Workexperiences() {
         />
       </View>
 
+
       <View style={styles.BtnContainer}>
         <Pressable
           style={styles.btn}
           onPress={() => EnviarDados()}
         >
           <Text style={styles.BtnText}>Próximo</Text>
+        </Pressable>
+      </View>
+      <View style={styles.text}>
+        <Pressable
+          style={styles.text}
+          onPress={() => FANTASMA()}
+        >
+          <Text style={styles.BtnText}>.</Text>
         </Pressable>
       </View>
     </SafeAreaView>

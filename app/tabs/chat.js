@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dimensions, Pressable, ScrollView, Text, View } from "react-native";
+import { Dimensions, Pressable, ScrollView, Text, View, StatusBar } from "react-native";
 import { Link, useRouter } from "expo-router";
 import styles from "../../styles/MessagesStyles.js";
 import ChatImage from "../../assets/vectors/ChatImage.jsx";
@@ -15,10 +15,12 @@ export default function Chat({ name, isOnline, isTyping, time, unreadCount }) {
   time = "12:00";
   unreadCount = "5";
   return (
+    
     <ScrollView
       style={styles.container}
       contentContainerStyle={{ paddingBottom: 0, alignItems: "center" }}
     >
+
       {/* Corpo da tela */}
       {/*PRIMEIRO CARROUSEL  */}
       <View style={styles.body}>

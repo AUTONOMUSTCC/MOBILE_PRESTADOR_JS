@@ -9,6 +9,9 @@ export default function RootLayout() {
       <Stack.Screen name="Horario" options={{ headerShown: false }} />
       <Stack.Screen name="Menssages" options={{ headerShown: false }} />
       <Stack.Screen name="Professionals" options={{ headerShown: false }} />
+      <Stack.Screen name="Search" options={{ headerShown: false }} />
+      <Stack.Screen name="AdvertisementClient" options={{ headerShown: false }} />
+
     </Stack>
   );
 }

@@ -24,9 +24,11 @@ export default StyleSheet.create({
     height: heightTotal * 0.12,
     width: widthTotal * 0.9,
     alignItems: "center",
+    marginTop: '10%',
+    paddingLeft: 5,
   },
   Titulo: {
-    width: widthTotal * 0.4,
+    width: widthTotal * 0.35,
     textAlign: "justify",
     height: heightTotal * 0.05,
   },

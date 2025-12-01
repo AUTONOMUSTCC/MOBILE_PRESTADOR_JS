@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import {
   Alert,
@@ -7,13 +6,15 @@ import {
   ScrollView,
   StatusBar,
   Text,
-  View,
+  View
 } from "react-native";
 import {
   SafeAreaProvider,
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
+//import { getUserId } from "../../services/Id.js";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import api from "../../services/api.js";
 import styles from "../../styles/AgendaStyles.js";
 
@@ -49,7 +50,10 @@ export default function Agenda() {
       console.log("Todas as agendas foram criadas com sucesso:", results);
       await AsyncStorage.setItem("IdAgenda", JSON.stringify(results));
 
+      setSelectedDayId([]);
+      
       setTimeselected([]);
+      Alert.alert('Agenda atualizada com sucesso!');
     } catch (e) {
       console.error(e);
     }
@@ -85,6 +89,8 @@ export default function Agenda() {
     });
   };
 
+
+  
   // Função para alternar horários
   const toggleSelection = (time) => {
     if (selectedtime.includes(time)) {
@@ -96,30 +102,9 @@ export default function Agenda() {
 
   // Array de horários
   const times = [
-    "00:00",
-    "12:00",
-    "01:00",
-    "13:00",
-    "02:00",
-    "14:00",
-    "03:00",
-    "15:00",
-    "04:00",
-    "16:00",
-    "05:00",
-    "17:00",
-    "06:00",
-    "18:00",
-    "07:00",
-    "19:00",
-    "08:00",
-    "20:00",
-    "09:00",
-    "21:00",
-    "10:00",
-    "22:00",
-    "11:00",
-    "23:00",
+    "00:00", "12:00", "01:00", "13:00", "02:00", "14:00", "03:00", "15:00",
+    "04:00", "16:00", "05:00", "17:00", "06:00", "18:00", "07:00", "19:00",
+    "08:00", "20:00", "09:00", "21:00", "10:00", "22:00", "11:00", "23:00",
   ];
 
   // Renderiza horários
@@ -134,6 +119,7 @@ export default function Agenda() {
       </Pressable>
     );
   };
+
 
   return (
     <SafeAreaProvider>
@@ -158,7 +144,8 @@ export default function Agenda() {
             </Text>
           </View>
 
-          <View style={styles.containerWeek}>
+          {/* Botões dos dias da semana */}
+           <View style={styles.containerWeek}>
             <View style={styles.weekbuttonscontainer}>
               {days.map((day) => {
                 const isSelected = selectedDayId.includes(day.id);
@@ -204,10 +191,7 @@ export default function Agenda() {
           </View>
 
           <View style={styles.containerButton}>
-            <Pressable
-              style={styles.BtnSalvar}
-              onPress={() => IncluirAgenda(selectedDayId, selectedtime)}
-            >
+            <Pressable style={styles.BtnSalvar}  onPress={() => IncluirAgenda(selectedDayId, selectedtime)} >
               <Text style={styles.Subtitle}>SALVAR</Text>
             </Pressable>
           </View>

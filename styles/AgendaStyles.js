@@ -10,7 +10,7 @@ export default StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
     width: width,
-    height: heigth,
+    height: heigth * 1.2,
   },
 
   containerTitle: {
@@ -109,7 +109,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     width: "50%",
-    paddingVertical: 8,
+    paddingVertical: 7,
   },
   circle: {
     width: 20,
@@ -140,6 +140,8 @@ export default StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+        //backgroundColor: "#A0CEE1",
+
   },
 
   BtnSalvar:{

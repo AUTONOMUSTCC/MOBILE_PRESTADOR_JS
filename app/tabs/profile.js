@@ -16,12 +16,22 @@ import api from "../../services/api.js";
 import styles from "../../styles/ProfileStyles.js";
 
 //IMAGES
-const profilePic = require("../../assets/images/profilePIc.png");
+//const profilePic = require("../../assets/images/"+{id}+".png");
+//const img30 = require("../../assets/images/30.png");
 //SVG's
 import Arrowicon from "../../assets/vectors/Arrowicon.jsx";
 import ChangeImage from "../../assets/vectors/ChangeImage.jsx";
 import Localicon from "../../assets/vectors/Localicon.jsx";
 import Settingsicon from "../../assets/vectors/SettingsIcon.jsx";
+
+//IMAGENS DOS PERFIS
+const imagensPerfil = {
+  30: require("../../assets/images/30.png"),
+  36: require("../../assets/images/36.png"),
+  42: require("../../assets/images/36.png"),
+};
+
+//import img30 from "../../assets/images/30.png";
 
 //consts - variáveis
 
@@ -43,13 +53,14 @@ export default function Profile() {
   const [aval, setavalprestador] = React.useState("");
  /* const dataFormatada = dtnascimento.split("T")[0];*/
   const nomeCompleto = nome +" "+sobrenome;
-
+const [fotoId, setFotoId] = useState(null);
 //  PUXANDO DO BANCO
   useEffect(() => {
     const carregarUsuario = async () => {
       const id = await AsyncStorage.getItem("idUsuario");
       const user = await getPrestadorById(id); // função com os dados do prestador 
-       setEmail(user.emailPrestador);
+         setFotoId(user.idPrestador);  
+      setEmail(user.emailPrestador);
        setNome(user.nomePrestador);
        setSobrenome(user.sobrenomePrestador);
        setTelefone(user.telefonePrestador);
@@ -97,7 +108,7 @@ export default function Profile() {
           <View style={styles.maininfos}>
             <View style={styles.background}>
               <ImageBackground
-                source={profilePic}
+                source={imagensPerfil[fotoId] }
                 style={styles.profilePicture}
               >
                 <View style={styles.circle}>
@@ -117,7 +128,7 @@ export default function Profile() {
                   style={{ paddingVertical: 6 }}
                   startingValue={aval}
                 />
-                <Text style={styles.CountAval}>(3 Avaliações)</Text>
+                <Text style={styles.CountAval}>(0 Avaliações)</Text>
               </View>
             </View>
             <View style={styles.Location}>

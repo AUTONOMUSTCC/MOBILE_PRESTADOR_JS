@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter, router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 import React from "react";
 import {
   Pressable,
@@ -16,7 +16,6 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import styles from "../../styles/StylesDescription.js";
-import { setDescription } from "../../services/Addcreation.js";
 
 /* Agr com async storage, ^N vou usar mais
 const SalvarDescricao =  async(descr) => {
@@ -29,6 +28,10 @@ export default function description() {
   const [descr, setdescription] = React.useState("");
   const insets = useSafeAreaInsets();
   const router = useRouter();
+
+  const FANTASMA = () => {
+    setdescription("Desenvolvedor Full Stack especializado em criação de websites, sistemas administrativos, landing pages e integrações com APIs. Atendo tanto empresas quanto profissionais autônomos que precisam de soluções digitais modernas, rápidas e personalizadas. Trabalho com React, Node.js, Next.js, bancos de dados SQL/NoSQL e implemento boas práticas de segurança e performance.");
+  }
 
   const EnviarDados = async() =>{
     try{
@@ -73,6 +76,11 @@ export default function description() {
             autoCapitalize="none"
           >
           </TextInput>
+        </View>
+        <View style={styles.Text}>
+          <Pressable style={styles.Text} onPress={() => FANTASMA() } >
+            <Text style={styles.BtnText}>.</Text>
+          </Pressable>
         </View>
         <View style={styles.BtnContainer}>
           <Pressable style={styles.btn} onPress={() => EnviarDados() } >

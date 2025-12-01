@@ -1,7 +1,7 @@
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
-import { useRouter, router } from "expo-router";
-import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 import {
   FlatList,
   Modal,
@@ -16,7 +16,6 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import { setQualities } from "../../services/Addcreation.js";
 import styles from "../../styles/StylesHighLigths.js";
 
 const Card = ({ text }) => {
@@ -42,6 +41,11 @@ export default function HighLigths() {
   const [inputText, setInputText] = useState("");
   const insets = useSafeAreaInsets();
   const router = useRouter();
+
+  const FANTASMA = () => {
+    setTopic(["Proatividade", "Pontualidade e entregas dentro do prazo", "Alto padrão de organização e documentação"]);
+  }
+
 
   useEffect(() => {
     if (topic.length >= 5) {
@@ -171,6 +175,14 @@ export default function HighLigths() {
           <Text style={styles.BtnText}>Próximo</Text>
         </Pressable>
       </View>
+       <View style={styles.text}>
+              <Pressable
+                style={styles.text}
+                onPress={() => FANTASMA()}
+              >
+                <Text style={styles.BtnText}>.</Text>
+              </Pressable>
+            </View>
     </SafeAreaView>
   );
 }

@@ -1,43 +1,38 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 
-// Cria 24 horários com IDs únicos
-const timeSlots = Array.from({ length: 24 }, (_, index) => ({
-  slotId: index + 1,
-  slotLabel: `${index.toString().padStart(2, "0")}:00`,
-}));
-
-export default function VerticalScheduleList() {
-  // Armazena os IDs dos horários selecionados
+export default function VerticalScheduleList({ data = [] }) {
+  // Armazena os horários selecionados
   const [activeSlots, setActiveSlots] = useState([]);
 
-  const handleSelectSlot = (slotId) => {
+  const handleSelectSlot = (slot) => {
     setActiveSlots((previousSlots) =>
-      previousSlots.includes(slotId)
-        ? previousSlots.filter((item) => item !== slotId)
-        : [...previousSlots, slotId]
+      previousSlots.includes(slot)
+        ? previousSlots.filter((item) => item !== slot)
+        : [...previousSlots, slot]
     );
   };
 
   return (
     <View style={styles.wrapper}>
-      <FlatList nestedScrollEnabled
-        data={timeSlots}
-        keyExtractor={(item) => item.slotId.toString()}
+      <FlatList
+        data={data}                            // 👉 usa APENAS os horários compatíveis
+        keyExtractor={(item, index) => `${item}-${index}`}
+        nestedScrollEnabled
         showsVerticalScrollIndicator={false}
         snapToAlignment="start"
         decelerationRate="fast"
         snapToInterval={92}
         renderItem={({ item }) => {
-          const isActive = activeSlots.includes(item.slotId);
+          const isActive = activeSlots.includes(item);
           return (
             <TouchableOpacity
               style={[styles.cardItem, isActive && styles.cardItemActive]}
-              onPress={() => handleSelectSlot(item.slotId)}
+              onPress={() => handleSelectSlot(item)}
             >
-              <Text style={styles.timeText}>{item.slotLabel}</Text>
+              <Text style={styles.timeText}>{item}</Text>
 
-              {/* Radio button (custom) */}
+              {/* Radio button */}
               <View style={styles.radioWrapper}>
                 <View style={styles.radioOutline}>
                   {isActive && <View style={styles.radioDot} />}
@@ -100,18 +95,5 @@ const styles = StyleSheet.create({
     height: 12,
     borderRadius: 6,
     backgroundColor: "#A0CEE1",
-  },
-  selectionInfo: {
-    marginTop: 10,
-    paddingHorizontal: 20,
-  },
-  selectionTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    marginBottom: 4,
-  },
-  selectionText: {
-    fontSize: 14,
-    color: "#444",
   },
 });

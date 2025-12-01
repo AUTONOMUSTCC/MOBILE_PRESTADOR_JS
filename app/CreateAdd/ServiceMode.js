@@ -84,6 +84,9 @@ export default function ServiceMode() {
     }
   };
 
+  const FANTASMA = () => {
+    setTopic(["Atendimento personalizado com levantamento de requisitos detalhado antes do início do projeto.", "Feedback contínuo durante o desenvolvimento para garantir alinhamento total com o cliente."]);
+  }
   return (
     <SafeAreaView
       style={[
@@ -121,6 +124,14 @@ export default function ServiceMode() {
           ao contratar seus serviços.
         </Text>
       </View>
+      <View style={styles.text}>
+                    <Pressable
+                      style={styles.text}
+                      onPress={() => FANTASMA()}
+                    >
+                      <Text style={styles.BtnText}>.</Text>
+                    </Pressable>
+                  </View>
 
       {/* Forma de atendimento */}
       <View style={styles.Modecontainer}>
@@ -212,6 +223,7 @@ export default function ServiceMode() {
           <Text style={styles.BtnText}>Próximo</Text>
         </Pressable>
       </View>
+      
     </SafeAreaView>
   );
 }

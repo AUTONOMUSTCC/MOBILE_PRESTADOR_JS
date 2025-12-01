@@ -8,7 +8,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#A0CEE1",
-    height: heightTotal ,
+    height: heightTotal,
     width: widthTotal,
   },
   /*PESQUISA */
@@ -16,6 +16,7 @@ export default StyleSheet.create({
     width: widthTotal,
     paddingHorizontal: 16,
     paddingVertical: 10,
+    paddingTop: 45,
     backgroundColor: "#A0CEE1",
     flexDirection: "row",
     alignItems: "center",
@@ -59,7 +60,7 @@ export default StyleSheet.create({
     height: heightTotal * 0.02,
   },
 
-  notification:{
+  notification: {
     width: widthTotal * 0.1,
     height: heightTotal * 0.04,
   },
@@ -81,6 +82,13 @@ export default StyleSheet.create({
     borderRadius: 15,
     marginBottom: 20,
   },
+  top: {
+    width: width,
+   // backgroundColor: "#121fff",
+    flexDirection: "row",
+    display: "flex",
+    height: heightTotal * 0.05,
+  },
 
   text: {
     fontFamily: "Inter",
@@ -90,6 +98,7 @@ export default StyleSheet.create({
     marginBottom: 10,
     alignSelf: "flex-start",
     left: 20,
+    paddingRight:"40%",
   },
   /*Informações passoais  */
   viewcontrolPOSTS: {

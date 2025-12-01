@@ -1,6 +1,6 @@
-import { Link, useRouter } from "expo-router";
+import { Link, useRouter, useState } from "expo-router";
 import React from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View, Image } from "react-native";
 import AboutImage from "../../assets/vectors/AboutImage.jsx";
 import Arrowicon from "../../assets/vectors/Arrowicon.jsx";
 import styles from "../../styles/AboutStyles.js";
@@ -20,6 +20,11 @@ import api from "../../services/api.js";
 } from "../../services/Addcreation.js";
 */
 
+const imagensPerfil = {
+  30: require("../../assets/images/30.png"),
+  36: require("../../assets/images/36.png"),
+  37: require("../../assets/images/30.png"),
+};
 
 export default function AboutScreen() {
   const router = useRouter();
@@ -30,66 +35,73 @@ export default function AboutScreen() {
   const [habilidades, sethabilidades] = React.useState([]);
   const [destaque, setDestaque] = React.useState([]);
   const [abordagem, setabordagem] = React.useState([]);
-///-------------------
+  ///-------------------
   const [valor, setValor] = React.useState("");
   const [categoria, setcategoria] = React.useState("");
   const [descricao, setdescricao] = React.useState("");
   const [atendimento, setatendimento] = React.useState("");
 
+  //IMAGENS DOS PERFIS
+
+  const [fotoId, setFotoId] = React.useState(null);
 
   React.useEffect(() => {
-   const DadosAnuncio = async() =>{
-    const idbruto = await AsyncStorage.getItem("idUsuario");
-    const id = parseInt(idbruto, 10);
-    const response = await api.get("/api/PublicacaoPrestador/");
-    const todosAnuncios = response.data;
+    const DadosAnuncio = async () => {
+      const idbruto = await AsyncStorage.getItem("idUsuario");
+      const id = parseInt(idbruto, 10);
+      setFotoId(id);
 
-    // Se a API retorna uma lista:
-    const lista = Array.isArray(todosAnuncios) ? todosAnuncios : [todosAnuncios];
-    
-    //agr filtro pelo id
-     const meusAnuncios = lista.filter(
+      const response = await api.get("/api/PublicacaoPrestador/");
+      const todosAnuncios = response.data;
+
+      // Se a API retorna uma lista:
+      const lista = Array.isArray(todosAnuncios)
+        ? todosAnuncios
+        : [todosAnuncios];
+
+      //agr filtro pelo id
+      const meusAnuncios = lista.filter(
         (a) => a.publicacaoPrestador?.idPrestador === id
       );
 
-    if (meusAnuncios.length === 0) {
-      console.warn("Nenhum anúncio encontrado para este prestador.");
-      return;
-    }
+      if (meusAnuncios.length === 0) {
+        console.warn("Nenhum anúncio encontrado para este prestador.");
+        return;
+      }
 
-    const anuncio = meusAnuncios[0]; 
-    // Extrai o objeto principal
-    const publicacao = anuncio.publicacaoPrestador;
-    setValor(publicacao.valorPublicacaoPrestador ?? "");
-    setcategoria(publicacao.categoriaPublicacaoPrestador ?? "");
-    setdescricao(publicacao.descricaoPublicacaoPrestador ?? "");
-    setatendimento(publicacao.formaDeAtendimentoPrestador ?? "");
-    
-    sethabilidades(
-      anuncio.publicacaoPrestadorHabilidades?.map(
-        (h) => h.descricaoHabilidadePrestador
-      ) || []
-    );
+      const anuncio = meusAnuncios[0];
+      // Extrai o objeto principal
+      const publicacao = anuncio.publicacaoPrestador;
+      setValor(publicacao.valorPublicacaoPrestador ?? "");
+      setcategoria(publicacao.categoriaPublicacaoPrestador ?? "");
+      setdescricao(publicacao.descricaoPublicacaoPrestador ?? "");
+      setatendimento(publicacao.formaDeAtendimentoPrestador ?? "");
 
-    setExperiencias(
-      anuncio.publicacaoPrestadorExperiencias?.map(
-        (e) => e.descricaoExperienciaPrestador
-      ) || []
-    );
+      sethabilidades(
+        anuncio.publicacaoPrestadorHabilidades?.map(
+          (h) => h.descricaoHabilidadePrestador
+        ) || []
+      );
 
-    setDestaque(
-      anuncio.publicacaoPrestadorQualidades?.map(
-        (q) => q.descricaoQualidadePrestador
-      ) || []
-    );
+      setExperiencias(
+        anuncio.publicacaoPrestadorExperiencias?.map(
+          (e) => e.descricaoExperienciaPrestador
+        ) || []
+      );
 
-    setabordagem(
-      anuncio.publicacaoPrestadorAbordagens?.map(
-        (a) => a.descricaoAbordagemPrestador
-      ) || []
-    );
-   }
-   DadosAnuncio();
+      setDestaque(
+        anuncio.publicacaoPrestadorQualidades?.map(
+          (q) => q.descricaoQualidadePrestador
+        ) || []
+      );
+
+      setabordagem(
+        anuncio.publicacaoPrestadorAbordagens?.map(
+          (a) => a.descricaoAbordagemPrestador
+        ) || []
+      );
+    };
+    DadosAnuncio();
   }, []);
 
   return (
@@ -107,7 +119,10 @@ export default function AboutScreen() {
         <View style={styles.header}>
           <View style={styles.statusBox}></View>
           <View style={styles.statusBox}>
-            <AboutImage style={styles.profileImage} />
+            <Image
+              source={imagensPerfil[fotoId]}
+              style={styles.profilePicture}
+            />
           </View>
           <View style={styles.statusBox3}>
             <Text style={styles.statusTitle}>Status do perfil</Text>
@@ -137,13 +152,12 @@ export default function AboutScreen() {
         {/* O que faço */}
         <Text style={styles.sectionTitle}>O que faço ?</Text>
         <View style={styles.list}>
-              {/*HABILIDADES */}
-            {habilidades.map((hab, index) => (
-              <Text key={index} style={styles.listItem}>
-                ✓ {hab}
-              </Text>
-            ))}
-
+          {/*HABILIDADES */}
+          {habilidades.map((hab, index) => (
+            <Text key={index} style={styles.listItem}>
+              ✓ {hab}
+            </Text>
+          ))}
         </View>
 
         {/* Experiências */}
@@ -156,7 +170,6 @@ export default function AboutScreen() {
               </Text>
             ))}
           </View>
-
         </View>
 
         {/* Abordagem */}
@@ -171,7 +184,6 @@ export default function AboutScreen() {
         <Text style={styles.sectionTitle}>Por que me escolher?</Text>
         <View style={styles.list}>
           <View style={styles.list}>
-       
             {/*QUALIDADES */}
             {destaque.map((dest, index) => (
               <Text key={index} style={styles.listItem}>

@@ -1,31 +1,54 @@
-import React, { useState, useRef, useEffect } from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useEffect, useRef, useState } from "react";
 import {
-  View,
+  ActivityIndicator,
+  FlatList,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
   Text,
   TextInput,
   TouchableOpacity,
-  FlatList,
-  KeyboardAvoidingView,
-  Platform
+  View,
 } from "react-native";
-import styles from "../../styles/ChatStyles.js";
+import { imagensClientes } from "../../assets/images/perfis.js";
 import Arrowicon from "../../assets/vectors/Arrowicon.jsx";
-import { Link, useRouter } from "expo-router";
-import ChatImage from "../../assets/vectors/ChatImage.jsx";
-import { Ionicons } from "@expo/vector-icons";
+import styles from "../../styles/ChatStyles.js";
 
-function Menssages({ name, avatar, isOnline, isTyping, onBack }) {
+// ======================
+//      HEADER DO CHAT
+// ======================
+function Menssages({ name, isOnline, isTyping, onBack }) {
   const router = useRouter();
+  const { idPrestador } = useLocalSearchParams();
+  const [loading, setLoading] = useState(true);
+  console.log("ID RECEBIDO:", idPrestador);
+
+
+  const fotoPerfil = imagensClientes[idPrestador] || imagensClientes.default;
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 300);
+  }, []);
 
   return (
-    <View style={styles.headerContainer}>
-      <TouchableOpacity onPress={onBack} style={styles.backButton}>
-        <Arrowicon onPress={() => router.back()}/>
+    <View style={styles.headerContainer2}>
+      {/* Botão de voltar */}
+      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+        <Arrowicon />
       </TouchableOpacity>
 
+      {/* Info do usuário */}
       <View style={styles.headerInfoContainer}>
         <View style={styles.avatarContainer}>
-          <ChatImage/>
+          {loading ? (
+            <ActivityIndicator size="small" color="#999" />
+          ) : (
+             <Image source={fotoPerfil} style={styles.profileImage} />
+          )}
+
+          {/* Status Online */}
           <View
             style={[
               styles.statusIndicator,
@@ -36,10 +59,18 @@ function Menssages({ name, avatar, isOnline, isTyping, onBack }) {
 
         <View>
           <Text style={styles.name}>{name}</Text>
+
           {isTyping ? (
-            <Text style={[styles.statusText, styles.typingText]}>Digitando...</Text>
+            <Text style={[styles.statusText, styles.typingText]}>
+              Digitando...
+            </Text>
           ) : (
-            <Text style={[styles.statusText, { color: isOnline ? "gray" : "red" }]}>
+            <Text
+              style={[
+                styles.statusText,
+                { color: isOnline ? "gray" : "red" },
+              ]}
+            >
               {isOnline ? "Online" : "Offline"}
             </Text>
           )}
@@ -48,18 +79,22 @@ function Menssages({ name, avatar, isOnline, isTyping, onBack }) {
     </View>
   );
 }
+
+// ======================
+//    CORPO DO CHAT
+// ======================
 export default function Mensagens() {
   const [messages, setMessages] = useState([
-    { id: "1", text: "Oi! Tudo bem?", sent: false },
-    { id: "2", text: "Tudo ótimo! E você?", sent: true },
+    { id: "1", text: "Oi! Tudo bem?", sent: true },
   ]);
 
   const [inputText, setInputText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [isOnline, setIsOnline] = useState(true);
+
   const flatListRef = useRef(null);
 
-  // Simulação: pessoa fica offline/online de forma aleatória
+  // Simula ficar online/offline
   useEffect(() => {
     const interval = setInterval(() => {
       setIsOnline((prev) => !prev);
@@ -68,7 +103,7 @@ export default function Mensagens() {
   }, []);
 
   const handleSend = () => {
-    if (inputText.trim() === "") return;
+    if (!inputText.trim()) return;
 
     const newMessage = {
       id: Date.now().toString(),
@@ -76,33 +111,37 @@ export default function Mensagens() {
       sent: true,
     };
 
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    setMessages((prev) => [...prev, newMessage]);
     setInputText("");
     setIsTyping(false);
 
-    // Simula resposta automática do "backend"
+    // Resposta simulada
     setTimeout(() => {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { id: Date.now().toString(), text: "Recebi sua mensagem!", sent: false },
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          text: "Recebi sua mensagem!",
+          sent: false,
+        },
       ]);
-    }, 2000);
+    }, 1500);
   };
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={80}
     >
+      {/* Header do chat */}
       <Menssages
-        name="Gabriela Fernandes"
-        avatar="https://i.pravatar.cc/150?img=47"
+        name="Fernanda"
         isOnline={isOnline}
         isTyping={isTyping}
-        onBack={() => console.log("Voltar")}
       />
 
+      {/* Lista de mensagens */}
       <FlatList
         ref={flatListRef}
         data={messages}
@@ -124,22 +163,23 @@ export default function Mensagens() {
         contentContainerStyle={{ paddingVertical: 10 }}
       />
 
+      {/* Barra de digitação */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           placeholder="Digite uma mensagem..."
           value={inputText}
-          onChangeText={(text) => {
-            setInputText(text);
-            setIsTyping(text.length > 0);
+          onChangeText={(t) => {
+            setInputText(t);
+            setIsTyping(t.length > 0);
           }}
           onBlur={() => setIsTyping(false)}
         />
-        <TouchableOpacity onPress={handleSend} style={styles.sendButton}>
+
+        <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
           <Ionicons name="send" size={22} color="#cccccc" />
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
   );
 }
-

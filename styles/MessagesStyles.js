@@ -12,6 +12,16 @@ export default StyleSheet.create({
     width: widthTotal,
   },
   /*PESQUISA */
+ profileImage: {
+  width: 55,
+  height: 55,
+  borderRadius: 55 / 2,
+},
+
+   imageContainer: {
+    alignItems: "center",
+    marginTop: -60,
+  },
  
   TituloInfosFirst: {
     width: widthTotal * 0.8,   
@@ -103,7 +113,7 @@ export default StyleSheet.create({
   },
   // Cabeçalho
   headerContainer2: {
-    width: widthTotal * 1,
+    width: widthTotal ,
     height: heightTotal * 0.1,
     flexDirection: "row",
     alignItems: "center",
@@ -123,10 +133,14 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  avatarContainer: {
-    position: "relative",
-    marginRight: 10,
-  },
+ avatarContainer: {
+  width: 55,
+  height: 55,
+  borderRadius: 55 / 2,
+  overflow: "hidden", // ESSENCIAL!
+  justifyContent: "center",
+  alignItems: "center",
+},
   avatar: {
     width: 45,
     height: 45,
@@ -166,7 +180,7 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginLeft: 10,
-    backgroundColor: "#A0CEE1",
+    backgroundColor: "#E66F51",
     borderRadius: 25,
   },
   timeContainer: {

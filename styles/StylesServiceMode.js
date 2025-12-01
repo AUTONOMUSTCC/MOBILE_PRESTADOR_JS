@@ -48,16 +48,17 @@ export default StyleSheet.create({
   SubTitleContainer: {
     marginTop: 10,
     width: width * 0.9,
-    height: height * 0.15,
+    height: height * 0.1,
     justifyContent: "center",
     alignContent: "flex-start",
     paddingLeft: 10,
+    paddingBottom:0,
   },
   SubTitleText: {
-    width: width * 0.755,
-    height: height * 0.2,
+    width: width * 0.9,
+    height: height * 0.125,
     color: "#000",
-    fontSize: 15,
+    fontSize: 14,
     textAlign: "left",
   },
 

@@ -21,18 +21,43 @@ export default StyleSheet.create({
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.1,
         shadowRadius: 2,
+        marginTop: 40,
       },
       backButton: {
         marginRight: 10,
       },
-      headerInfoContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-      },
-      avatarContainer: {
-        position: "relative",
-        marginRight: 10,
-      },
+       headerContainer2: {
+         width: widthTotal ,
+         height: heightTotal * 0.1,
+         flexDirection: "row",
+         alignItems: "center",
+         backgroundColor: "#fff",
+         paddingHorizontal: 5,
+         paddingVertical: 10,
+         elevation: 2,
+         shadowColor: "#000",
+         shadowOffset: { width: 0, height: 1 },
+         shadowOpacity: 0.1,
+         shadowRadius: 2,
+         container: 'contain',
+         marginTop: "10%",
+       },
+       profileImage: {
+  width: 50,
+  height: 50,
+  borderRadius: 55 / 2,
+},
+       avatarContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 55 / 2,
+    overflow: "hidden",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 10,
+  },
+
+      
       avatar: {
         width: 45,
         height: 45,
@@ -61,12 +86,16 @@ export default StyleSheet.create({
         color: "gray",
         fontStyle: "italic",
       },
+      headerInfoContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
       // Mensagens
       messageContainer: {
         maxWidth: "75%",
         borderRadius: 15,
         padding: 10,
-        marginVertical: 5,
+        marginVertical: 10,
         marginHorizontal: 10,
       },
       sentMessage: {
@@ -89,6 +118,7 @@ export default StyleSheet.create({
         paddingVertical: 5,
         borderTopWidth: 1,
         borderColor: "#ddd",
+        marginBottom: '15%',
       },
       input: {
         flex: 1,

@@ -31,9 +31,10 @@ export default StyleSheet.create({
   headerContainer: {
     alignItems: "center",
     width: widthTotal,
-    height: heightTotal * 0.08,
+    height: heightTotal * 0.12,
     justifyContent: "center",
     flexDirection: "row",
+    paddingTop: 50,
     //backgroundColor: "#E66F51",
   },
   txthead: {
